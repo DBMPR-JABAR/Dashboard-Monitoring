@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import Head from 'next/head'
-import Logo from '../components/logo/Logo'
 import Hero from '../components/hero/Hero'
 import OverviewSection from '../components/section/overview/OverviewSection'
 import Footer from '../components/footer/Footer'
+import Nav from '../components/nav/Nav'
 
 export default function Home() {
   return (
@@ -14,14 +13,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icons/logo_temanjabar.ico" />
       </Head>
-      <nav className="flex justify-between items-center py-3 px-44">
-        <Logo />
-        <div>
-          <a href="#" className="font-lato text-sm font-bold text-gray-800">
-            <span>Home</span>
-          </a>
-        </div>
-      </nav>
+      <Nav />
       <Hero />
       <main>
         <OverviewSection />
