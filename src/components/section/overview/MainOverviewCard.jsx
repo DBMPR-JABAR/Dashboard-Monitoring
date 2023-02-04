@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import logoTjHijau from '../../../assets/logo/logo_tj_hijau.png'
+import logoTjGreen from '../../../assets/logo/logo_tj_green.png'
 
 export default function MainOverviewCard() {
   return (
@@ -26,7 +26,7 @@ export default function MainOverviewCard() {
       <Image
         className="absolute bottom-0 right-0 z-0"
         height={292}
-        src={logoTjHijau}
+        src={logoTjGreen}
         alt="Logo Temanjabar"
       />
     </div>
