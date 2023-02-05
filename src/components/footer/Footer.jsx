@@ -15,7 +15,7 @@ import youtubeSvg from '../../assets/icon/youtube_color.svg'
 import logoTjGray from '../../assets/logo/logo_tj_gray.png'
 
 export default function Footer() {
-  const { height, width } = useWindowDimensions()
+  const { width } = useWindowDimensions()
 
   return (
     <footer className="mt-32 bg-white">
@@ -72,7 +72,7 @@ export default function Footer() {
             </div>
             <div className="flex-1">
               <FooterSection title="Ikuti Kami" source={peopleFillGreenSvg}>
-                <div className="flex w-1/2 justify-between">
+                <div className="flex w-1/2 justify-between md:w-1/4">
                   <a href="#">
                     <Image
                       src={instagramSvg}
@@ -92,7 +92,7 @@ export default function Footer() {
           </div>
         </div>
         <Image
-          className="absolute bottom-0 right-0 z-0 w-56"
+          className="absolute bottom-0 right-0 z-0 w-56 md:w-72"
           src={logoTjGray}
           alt="Logo Temanjabar"
         />
