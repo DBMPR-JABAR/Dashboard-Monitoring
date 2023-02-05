@@ -24,8 +24,7 @@ export default function MainOverviewCard() {
         </div>
       </div>
       <Image
-        className="absolute bottom-0 right-0 z-0"
-        height={292}
+        className="absolute bottom-0 right-0 z-0 w-36"
         src={logoTjGreen}
         alt="Logo Temanjabar"
       />

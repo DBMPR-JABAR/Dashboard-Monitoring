@@ -5,7 +5,7 @@ import SubOverviewCard from './SubOverviewCard'
 export default function OverviewSection() {
   return (
     <Container>
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6">
         <MainOverviewCard />
         <SubOverviewCard
           uptdName="UPTD I"
