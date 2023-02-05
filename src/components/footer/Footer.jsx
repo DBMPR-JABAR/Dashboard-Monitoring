@@ -22,7 +22,7 @@ export default function Footer() {
       <div className="px-8 py-12 border-b border-gray-300 relative">
         <div className="relative z-10">
           <Logo height={48} />
-          <div className="mt-12">
+          <div className="mt-12 lg:flex">
             <div className="flex-1 mr-6">
               <FooterSection
                 title="DBMPR Provinsi Jawa Barat"
@@ -72,7 +72,7 @@ export default function Footer() {
             </div>
             <div className="flex-1">
               <FooterSection title="Ikuti Kami" source={peopleFillGreenSvg}>
-                <div className="flex w-1/2 justify-between md:w-1/4">
+                <div className="flex w-1/2 justify-between md:w-1/4 lg:w-2/3">
                   <a href="#">
                     <Image
                       src={instagramSvg}
@@ -98,8 +98,10 @@ export default function Footer() {
         />
       </div>
       <div className="px-8 py-6 bg-primaryGreen text-center text-sm text-white">
-        <span className="block mb-1">Copyright © 2023</span>
-        <span className="block mb-1">
+        <span className="block mb-1 lg:inline-block lg:mb-0 lg:mr-1">
+          Copyright © 2023
+        </span>
+        <span className="block mb-1 lg:inline-block lg:mr-1">
           Dinas Bina Marga dan Penataan Ruang Provinsi Jawa Barat
         </span>
         <span className="block">All Right Reserved</span>
