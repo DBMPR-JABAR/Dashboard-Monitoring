@@ -63,27 +63,52 @@ export default function Footer() {
                 useBorderBottom={width < 640}
               >
                 <div className="mb-2">
-                  <a href="#" className="hover:text-primaryGreen">
+                  <a
+                    href="https://tj.temanjabar.net"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-primaryGreen"
+                  >
                     Temanjabar
                   </a>
                 </div>
                 <div className="mb-2">
-                  <a href="#" className="hover:text-primaryGreen">
+                  <a
+                    href="https://tk.temanjabar.net"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-primaryGreen"
+                  >
                     Talikuat
                   </a>
                 </div>
                 <div className="mb-2">
-                  <a href="#" className="hover:text-primaryGreen">
+                  <a
+                    href="https://sp.temanjabar.net"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-primaryGreen"
+                  >
                     Sipelajar
                   </a>
                 </div>
                 <div className="mb-2">
-                  <a href="#" className="hover:text-primaryGreen">
+                  <a
+                    href="https://rm.temanjabar.net"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-primaryGreen"
+                  >
                     Systarumija
                   </a>
                 </div>
                 <div className="mb-2">
-                  <a href="#" className="hover:text-primaryGreen">
+                  <a
+                    href="https://lk.temanjabar.net"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-primaryGreen"
+                  >
                     Labkon
                   </a>
                 </div>
@@ -92,17 +117,29 @@ export default function Footer() {
             <div className="flex-1">
               <FooterSection title="Ikuti Kami" source={peopleFillGreenSvg}>
                 <div className="flex w-1/2 justify-between md:w-1/4 lg:w-2/3 xl:w-1/2">
-                  <a href="#">
+                  <a
+                    href="https://www.instagram.com/temanjabar_dbmpr"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <Image
                       src={instagramSvg}
                       height={24}
                       alt="Icon Instagram"
                     />
                   </a>
-                  <a href="#">
+                  <a
+                    href="https://twitter.com/temanjabar"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <Image src={twitterSvg} height={24} alt="Icon Twitter" />
                   </a>
-                  <a href="#">
+                  <a
+                    href="https://www.youtube.com/@temanjabar8927"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <Image src={youtubeSvg} height={24} alt="Icon Youtube" />
                   </a>
                 </div>
