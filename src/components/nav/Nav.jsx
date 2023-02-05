@@ -25,16 +25,14 @@ export default function Nav() {
       return 32
     } else if (width < 1024) {
       return 40
-    } else if (width < 1280) {
-      return 48
     } else {
-      return 80
+      return 48
     }
   }, [width])
 
   return (
     <nav
-      className={`sticky top-0 z-[9999] flex justify-between items-center py-3 px-8 border-gray-300 transition lg:px-16 ${
+      className={`sticky top-0 z-[9999] flex justify-between items-center py-3 px-8 border-gray-300 transition lg:px-16 xl:px-32 ${
         isOnTop ? 'bg-transparent border-b-0' : 'bg-white border-b'
       }`}
     >

@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import Image from 'next/image'
 import FooterSection from './FooterSection'
 import Logo from '../logo/Logo'
@@ -17,11 +18,19 @@ import logoTjGray from '../../assets/logo/logo_tj_gray.png'
 export default function Footer() {
   const { width } = useWindowDimensions()
 
+  const logoSize = useMemo(() => {
+    if (width < 1024) {
+      return 48
+    } else {
+      return 80
+    }
+  }, [width])
+
   return (
     <footer className="mt-32 bg-white">
-      <div className="px-8 py-12 border-b border-gray-300 relative">
+      <div className="px-8 py-12 border-b border-gray-300 relative xl:px-32">
         <div className="relative z-10">
-          <Logo height={48} />
+          <Logo height={logoSize} />
           <div className="mt-12 lg:flex">
             <div className="flex-1 mr-6">
               <FooterSection
@@ -53,26 +62,36 @@ export default function Footer() {
                 source={layersFillGreenSvg}
                 useBorderBottom={width < 640}
               >
-                <a href="#" className="block mb-2 hover:text-primaryGreen">
-                  Temanjabar
-                </a>
-                <a href="#" className="block mb-2 hover:text-primaryGreen">
-                  Talikuat
-                </a>
-                <a href="#" className="block mb-2 hover:text-primaryGreen">
-                  Sipelajar
-                </a>
-                <a href="#" className="block mb-2 hover:text-primaryGreen">
-                  Systarumija
-                </a>
-                <a href="#" className="block mb-2 hover:text-primaryGreen">
-                  Labkon
-                </a>
+                <div className="mb-2">
+                  <a href="#" className="hover:text-primaryGreen">
+                    Temanjabar
+                  </a>
+                </div>
+                <div className="mb-2">
+                  <a href="#" className="hover:text-primaryGreen">
+                    Talikuat
+                  </a>
+                </div>
+                <div className="mb-2">
+                  <a href="#" className="hover:text-primaryGreen">
+                    Sipelajar
+                  </a>
+                </div>
+                <div className="mb-2">
+                  <a href="#" className="hover:text-primaryGreen">
+                    Systarumija
+                  </a>
+                </div>
+                <div className="mb-2">
+                  <a href="#" className="hover:text-primaryGreen">
+                    Labkon
+                  </a>
+                </div>
               </FooterSection>
             </div>
             <div className="flex-1">
               <FooterSection title="Ikuti Kami" source={peopleFillGreenSvg}>
-                <div className="flex w-1/2 justify-between md:w-1/4 lg:w-2/3">
+                <div className="flex w-1/2 justify-between md:w-1/4 lg:w-2/3 xl:w-1/2">
                   <a href="#">
                     <Image
                       src={instagramSvg}
