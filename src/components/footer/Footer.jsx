@@ -26,9 +26,11 @@ export default function Footer() {
     }
   }, [width])
 
+  console.log(width)
+
   return (
     <footer className="mt-32 bg-white">
-      <div className="px-8 py-12 border-b border-gray-300 relative xl:px-32">
+      <div className="px-8 py-12 border-b border-gray-300 relative xl:px-32 2xl:px-48">
         <div className="relative z-10">
           <Logo height={logoSize} />
           <div className="mt-12 lg:flex">

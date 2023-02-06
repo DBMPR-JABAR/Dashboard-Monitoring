@@ -3,7 +3,7 @@ import discussionSvg from '../../assets/images/discussion.svg'
 
 export default function Hero() {
   return (
-    <div className="px-6 py-16 md:flex md:justify-between md:items-center md:px-10 lg:px-16 xl:px-32">
+    <div className="px-6 py-16 md:flex md:justify-between md:items-center md:px-10 lg:px-16 xl:px-32 2xl:px-48">
       <span className="block text-2xl text-gray-900 font-bold font-intro text-center mb-8 max-w-md md:mr-16 md:text-left xl:text-3xl xl:leading-[3.25rem]">
         Selamat Datang Dashboard Monitoring Temanjabar
       </span>

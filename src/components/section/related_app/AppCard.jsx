@@ -12,7 +12,7 @@ export default function AppCard({ appName, logo, link }) {
       href={link}
       target="_blank"
       rel="noreferrer"
-      className="block pt-8 bg-white rounded-lg m-6 overflow-hidden md:w-1/3 md:m-4 lg:w-1/4 xl:w-1/5 hover:cursor-pointer"
+      className="block pt-8 bg-white rounded-lg my-6 overflow-hidden box-border hover:cursor-pointer md:my-0 md:w-1/3 xl:w-1/4"
       onMouseEnter={() => setIsOnHover(true)}
       onMouseLeave={() => setIsOnHover(false)}
     >
