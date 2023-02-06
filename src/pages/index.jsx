@@ -3,6 +3,7 @@ import Hero from '../components/hero/Hero'
 import OverviewSection from '../components/section/overview/OverviewSection'
 import Footer from '../components/footer/Footer'
 import Nav from '../components/nav/Nav'
+import RelatedAppSection from '../components/section/related_app/RelatedAppSection'
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Hero />
       <main>
         <OverviewSection />
+        <RelatedAppSection />
       </main>
       <Footer />
     </>

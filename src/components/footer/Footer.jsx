@@ -46,14 +46,14 @@ export default function Footer() {
                 source={phoneFillGreenSvg}
                 useBorderBottom
               >
-                +62 367 467 8934
+                (022) 4231603
               </FooterSection>
               <FooterSection
                 title="Email"
                 source={mailFillGreenSvg}
                 useBorderBottom={width < 640}
               >
-                temanjabar@jabarprov.go.id
+                admin@temanjabar.jabarprov.go.id
               </FooterSection>
             </div>
             <div className="flex-1 mr-6">
