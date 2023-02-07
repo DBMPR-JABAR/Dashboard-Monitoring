@@ -3,7 +3,6 @@ import Hero from '../../components/hero/Hero'
 import OverviewSection from '../../components/section/overview/OverviewSection'
 import Footer from '../../components/footer/Footer'
 import Nav from '../../components/nav/Nav'
-import RelatedAppSection from '../../components/section/related_app/RelatedAppSection'
 import TalikuatSection from '../../components/section/talikuat/TalikuatSection'
 
 export default function Home() {
@@ -15,13 +14,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icons/logo_temanjabar.ico" />
       </Head>
-      <Nav />
-      <Hero />
-      <main>
-        <OverviewSection />
-        <TalikuatSection />
-      </main>
-      <Footer />
+      <div className="bg-green-50">
+        <Nav />
+        <Hero />
+        <main>
+          <OverviewSection />
+          <TalikuatSection />
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }

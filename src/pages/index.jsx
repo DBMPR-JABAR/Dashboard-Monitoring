@@ -14,13 +14,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icons/logo_temanjabar.ico" />
       </Head>
-      <Nav />
-      <Hero />
-      <main>
-        <OverviewSection />
-        <RelatedAppSection />
-      </main>
-      <Footer />
+      <div className="bg-green-50">
+        <Nav />
+        <Hero />
+        <main>
+          <OverviewSection />
+          <RelatedAppSection />
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }

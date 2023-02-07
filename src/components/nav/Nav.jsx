@@ -7,6 +7,7 @@ import Logo from '../logo/Logo'
 
 import loginFillWhite from '../../assets/icon/login_fill_white.svg'
 import Container from '../container/Container'
+import Link from 'next/link'
 
 export default function Nav() {
   const [isOnHover, setIsOnHover] = useState(false)
@@ -43,7 +44,9 @@ export default function Nav() {
     >
       <Container>
         <div className="flex justify-between items-center py-3">
-          <Logo height={logoSize} />
+          <Link href="/">
+            <Logo height={logoSize} />
+          </Link>
           <div>
             <a
               href="https://tj.temanjabar.net"

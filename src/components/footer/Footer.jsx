@@ -14,6 +14,7 @@ import instagramSvg from '../../assets/icon/instagram_color.svg'
 import twitterSvg from '../../assets/icon/twitter_color.svg'
 import youtubeSvg from '../../assets/icon/youtube_color.svg'
 import logoTjGray from '../../assets/logo/logo_tj_gray.png'
+import Link from 'next/link'
 
 export default function Footer() {
   const { width } = useWindowDimensions()
@@ -26,13 +27,13 @@ export default function Footer() {
     }
   }, [width])
 
-  console.log(width)
-
   return (
     <footer className="mt-32 bg-white">
       <div className="px-8 py-12 border-b border-gray-300 relative xl:px-32 2xl:px-48">
         <div className="relative z-10">
-          <Logo height={logoSize} />
+          <Link href="/">
+            <Logo height={logoSize} />
+          </Link>
           <div className="mt-12 lg:flex">
             <div className="flex-1 mr-6">
               <FooterSection
@@ -53,7 +54,7 @@ export default function Footer() {
               <FooterSection
                 title="Email"
                 source={mailFillGreenSvg}
-                useBorderBottom={width < 640}
+                useBorderBottom={width < 1024}
               >
                 admin@temanjabar.jabarprov.go.id
               </FooterSection>
@@ -62,7 +63,7 @@ export default function Footer() {
               <FooterSection
                 title="Ekosistem Temanjabar"
                 source={layersFillGreenSvg}
-                useBorderBottom={width < 640}
+                useBorderBottom={width < 1024}
               >
                 <div className="mb-2">
                   <a
@@ -150,7 +151,7 @@ export default function Footer() {
           </div>
         </div>
         <Image
-          className="absolute bottom-0 right-0 z-0 w-56 md:w-72"
+          className="absolute bottom-0 right-0 z-0 w-56 md:w-72 xl:w-96"
           src={logoTjGray}
           alt="Logo Temanjabar"
         />

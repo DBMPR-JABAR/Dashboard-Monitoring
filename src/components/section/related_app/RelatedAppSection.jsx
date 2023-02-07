@@ -1,6 +1,5 @@
 import AppCard from './AppCard'
 
-import logoTjWithTextPng from '../../../assets/logo/logo_tj_with_text.png'
 import logoTkWithTextPng from '../../../assets/logo/logo_tk_with_text.png'
 import logoSpWithTextPng from '../../../assets/logo/logo_sp_with_text.png'
 import logoRmWithTextPng from '../../../assets/logo/logo_rm_with_text.png'
