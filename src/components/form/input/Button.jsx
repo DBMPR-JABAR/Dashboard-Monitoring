@@ -1,10 +1,20 @@
-export default function Button({ text }) {
+import ReactLoading from 'react-loading'
+
+export default function Button({ text, isLoading }) {
   return (
     <button
       type="button"
-      className="block w-full bg-primaryGreen p-3 rounded-lg transition-all hover:bg-green-700"
+      className={`block w-full  p-3 rounded-lg transition-all  ${
+        isLoading ? 'bg-gray-300' : 'bg-primaryGreen hover:bg-green-700'
+      }`}
     >
-      <span className="text-white font-lato font-bold">{text}</span>
+      <span className="flex justify-center text-white font-lato font-bold">
+        {isLoading ? (
+          <ReactLoading type="spin" color="#fff" height={24} width={24} />
+        ) : (
+          text
+        )}
+      </span>
     </button>
   )
 }
