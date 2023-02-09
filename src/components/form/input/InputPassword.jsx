@@ -5,7 +5,7 @@ import Image from 'next/image'
 import visibleFillBlackSvg from '../../../assets/icon/visible_fill_black.svg'
 import invisibleFillBlackSvg from '../../../assets/icon/invisible_fill_black.svg'
 
-export default function InputPassword({ placeHolderText }) {
+export default function InputPassword({ placeHolderText, value, onChange }) {
   const [isVisible, setIsVisible] = useState(false)
 
   const handleVisibility = () => setIsVisible((visible) => !visible)
@@ -13,9 +13,11 @@ export default function InputPassword({ placeHolderText }) {
   return (
     <div className="relative">
       <input
-        className="w-full rounded-lg border border-gray-400 bg-gray-50 p-3 focus:border-primaryGreen focus:border-2"
+        className="w-full rounded-lg border border-gray-400 bg-gray-50 p-3 focus:border-primary-green focus:border-2"
         placeholder={placeHolderText}
         type={isVisible ? 'text' : 'password'}
+        value={value}
+        onChange={onChange}
       />
       <Image
         src={isVisible ? invisibleFillBlackSvg : visibleFillBlackSvg}

@@ -1,23 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
-        "default": "var(--display-default)",
-        "intro": "var(--display-intro)",
-        "lato": "var(--display-lato)",
-        "lora": "var(--display-lora)",
+        default: 'var(--display-default)',
+        intro: 'var(--display-intro)',
+        lato: 'var(--display-lato)',
+        lora: 'var(--display-lora)',
       },
       maxWidth: {
-        'logo-md': '200px'
+        'logo-md': '200px',
       },
       colors: {
-        primaryGreen: '#16A75C',
-        primaryBlue: '#1E88E5',
-        primaryYellow: '#FFD026',
+        'primary-green': '#16A75C',
+        'primary-blue': '#1E88E5',
+        'primary-yellow': '#FFD026',
         yellow: {
           50: '#FFF9E1',
           100: '#FFEEB4',
@@ -66,7 +64,7 @@ module.exports = {
           800: '#424242',
           900: '#212121',
         },
-      }
+      },
     },
   },
   plugins: [],

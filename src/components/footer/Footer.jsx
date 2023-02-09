@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import FooterSection from './FooterSection'
 import Logo from '../logo/Logo'
 
@@ -14,7 +15,6 @@ import instagramSvg from '../../assets/icon/instagram_color.svg'
 import twitterSvg from '../../assets/icon/twitter_color.svg'
 import youtubeSvg from '../../assets/icon/youtube_color.svg'
 import logoTjGray from '../../assets/logo/logo_tj_gray.png'
-import Link from 'next/link'
 
 export default function Footer() {
   const { width } = useWindowDimensions()
@@ -70,7 +70,7 @@ export default function Footer() {
                     href="https://tj.temanjabar.net"
                     target="_blank"
                     rel="noreferrer"
-                    className="hover:text-primaryGreen"
+                    className="hover:text-primary-green"
                   >
                     Temanjabar
                   </a>
@@ -80,7 +80,7 @@ export default function Footer() {
                     href="https://tk.temanjabar.net"
                     target="_blank"
                     rel="noreferrer"
-                    className="hover:text-primaryGreen"
+                    className="hover:text-primary-green"
                   >
                     Talikuat
                   </a>
@@ -90,7 +90,7 @@ export default function Footer() {
                     href="https://sp.temanjabar.net"
                     target="_blank"
                     rel="noreferrer"
-                    className="hover:text-primaryGreen"
+                    className="hover:text-primary-green"
                   >
                     Sipelajar
                   </a>
@@ -100,7 +100,7 @@ export default function Footer() {
                     href="https://rm.temanjabar.net"
                     target="_blank"
                     rel="noreferrer"
-                    className="hover:text-primaryGreen"
+                    className="hover:text-primary-green"
                   >
                     Systarumija
                   </a>
@@ -110,7 +110,7 @@ export default function Footer() {
                     href="https://lk.temanjabar.net"
                     target="_blank"
                     rel="noreferrer"
-                    className="hover:text-primaryGreen"
+                    className="hover:text-primary-green"
                   >
                     Labkon
                   </a>
@@ -156,7 +156,7 @@ export default function Footer() {
           alt="Logo Temanjabar"
         />
       </div>
-      <div className="px-8 py-6 bg-primaryGreen text-center text-sm text-white">
+      <div className="px-8 py-6 bg-primary-green text-center text-sm text-white">
         <span className="block mb-1 lg:inline-block lg:mb-0 lg:mr-1">
           Copyright © 2023
         </span>

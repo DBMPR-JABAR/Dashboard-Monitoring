@@ -23,7 +23,7 @@ export default function AppCard({ appName, logo, link }) {
       />
       <div
         className={`flex justify-center items-center py-3 px-6 mt-8 transition-all ${
-          isOnHover ? 'bg-green-700' : 'bg-primaryGreen'
+          isOnHover ? 'bg-green-700' : 'bg-primary-green'
         }`}
       >
         <span

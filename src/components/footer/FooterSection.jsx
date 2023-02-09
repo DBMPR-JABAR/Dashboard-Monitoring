@@ -15,7 +15,7 @@ export default function FooterSection({
       <div className="flex h-4 w-6 mr-4">
         <Image src={source} alt="Icon" />
       </div>
-      <span className="block font-bold font-default text-primaryGreen">
+      <span className="block font-bold font-default text-primary-green">
         {title}
       </span>
       <span className="block mt-3 col-start-2 col-end-auto font-lato text-sm">

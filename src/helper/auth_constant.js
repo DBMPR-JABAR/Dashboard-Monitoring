@@ -1,0 +1,5 @@
+export const SET_USER = 'set_user'
+export const GET_USER = 'get_user'
+export const USER_LOADING = 'user_loading'
+export const USER_LOADING_FINISH = 'user_loading_finish'
+export const DELETE_USER = 'delete_user'
