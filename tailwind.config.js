@@ -1,13 +1,13 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
-        default: 'var(--display-default)',
-        intro: 'var(--display-intro)',
-        lato: 'var(--display-lato)',
-        lora: 'var(--display-lora)',
+        lato: ['Lato', 'sans-serif'],
+        lora: ['Lora', 'serif'],
+        roboto: ['Roboto', 'sans-serif'],
+        intro: ['Intro', 'sans-serif'],
       },
       maxWidth: {
         'logo-md': '200px',

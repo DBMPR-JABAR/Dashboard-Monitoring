@@ -14,7 +14,7 @@ import logoTjWithTextSvg from '../../assets/logo/logo_tj_with_text.png'
 import loginBgSvg from '../../assets/images/login.png'
 import warningFillRedSvg from '../../assets/icon/warning_fill_red.svg'
 
-import client from '../../services/client'
+import axiosClient from '../../services/axiosClient'
 
 import Container from '../../components/container/Container'
 import InputPassword from '../../components/form/input/InputPassword'
@@ -44,21 +44,22 @@ export default function Login() {
     setIsLoginLoading(true)
 
     try {
-      const response = await client.post('/auth/login', {
+      const response = await axiosClient.post('/auth/login', {
         email: username,
         password: password,
       })
 
       const data = response.data.data
 
-      Cookies.set('tj-jwt-token', data.token)
+      console.log(data)
+      Cookies.set('tj-jwt-token', data.token.access_token)
       localStorage.setItem('tj-user', JSON.stringify(data.user))
       authContext.dispatchAuthEvent({
         type: AuthConstant.SET_USER,
         payload: data,
       })
 
-      await router.push('/dashboard')
+      await router.replace('/dashboard')
 
       setIsLoginLoading(false)
     } catch (err) {

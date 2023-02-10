@@ -1,10 +1,11 @@
 import '../styles/globals.css'
 
+import { Chart as ChartJS, registerables } from 'chart.js'
+import { Provider } from 'react-redux'
 import { useEffect, useReducer } from 'react'
-import Cookies from 'js-cookie'
 
-import { Roboto, Lato, Lora } from '@next/font/google'
-import localFont from '@next/font/local'
+import Cookies from 'js-cookie'
+import appStore from '../state/redux/appStore'
 
 import * as AuthConstant from '../helper/auth_constant'
 import AuthContext from '../context/auth_context'
@@ -13,55 +14,6 @@ import {
   USER_LOADING,
   USER_LOADING_FINISH,
 } from '../helper/auth_constant'
-
-const roboto = Roboto({
-  weight: ['100', '300', '400', '500', '700', '900'],
-  subsets: ['latin'],
-  variable: '--display-default',
-})
-
-const lato = Lato({
-  weight: ['100', '300', '400', '700', '900'],
-  subsets: ['latin'],
-  variable: '--display-lato',
-})
-
-const lora = Lora({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--display-lora',
-})
-
-const intro = localFont({
-  src: [
-    {
-      path: '../assets/fonts/intro/intro_thin.woff2',
-      weight: '100',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/intro/intro_light.woff2',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/intro/intro_regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/intro/intro_bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../assets/fonts/intro/intro_black.woff2',
-      weight: '900',
-      style: 'normal',
-    },
-  ],
-  variable: '--display-intro',
-})
 
 const initialUserState = {
   user: null,
@@ -98,6 +50,8 @@ const authReducer = (state, action) => {
   }
 }
 
+ChartJS.register(...registerables)
+
 export default function App({ Component, pageProps }) {
   const [authState, dispatchAuthEvent] = useReducer(
     authReducer,
@@ -118,23 +72,23 @@ export default function App({ Component, pageProps }) {
   }, [])
 
   return (
-    <main
-      className={`${roboto.variable} ${intro.variable} ${lato.variable} ${lora.variable} font-default`}
-    >
-      <AuthContext.Provider
-        value={{
-          state: authState,
-          dispatchAuthEvent,
-        }}
-      >
-        {authState.isLoading ? (
-          <h1 className="flex justify-center items-center min-h-screen">
-            Loading ...
-          </h1>
-        ) : (
-          <Component {...pageProps} />
-        )}
-      </AuthContext.Provider>
-    </main>
+    <Provider store={appStore}>
+      <main>
+        <AuthContext.Provider
+          value={{
+            state: authState,
+            dispatchAuthEvent,
+          }}
+        >
+          {authState.isLoading ? (
+            <h1 className="flex justify-center items-center min-h-screen">
+              Loading ...
+            </h1>
+          ) : (
+            <Component {...pageProps} />
+          )}
+        </AuthContext.Provider>
+      </main>
+    </Provider>
   )
 }

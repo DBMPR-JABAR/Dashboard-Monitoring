@@ -7,6 +7,7 @@ import OverviewSection from '../../components/section/overview/OverviewSection'
 import Footer from '../../components/footer/Footer'
 import Nav from '../../components/nav/Nav'
 import TalikuatSection from '../../components/section/talikuat/TalikuatSection'
+import SapuLobangSection from '../../components/section/sapu_lobang/SapuLobangSection'
 import AuthContext from '../../context/auth_context'
 
 export default function Home() {
@@ -37,7 +38,7 @@ export default function Home() {
         <Hero />
         <main>
           <OverviewSection />
-          <TalikuatSection />
+          <SapuLobangSection />
         </main>
         <Footer />
       </>
