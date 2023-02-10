@@ -6,7 +6,7 @@
 
 @layer base {
     html {
-        /* @apply bg-green-50/[0.5]; */
+        @apply font-roboto;
     }
 
     input:focus,

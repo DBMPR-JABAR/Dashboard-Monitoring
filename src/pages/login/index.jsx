@@ -22,8 +22,9 @@ import InputText from '../../components/form/input/InputText'
 import Button from '../../components/form/input/Button'
 import TextLink from '../../components/link/TextLink'
 import isEmptyOrSpaces from '../../helper/stringUtils'
+import Loading from '../../components/loading/Loading'
 
-export default function Login() {
+export default function LoginPage() {
   const authState = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const router = useRouter()
@@ -53,7 +54,7 @@ export default function Login() {
       loginActionDispatcher(LoginActions.loginSucces())
     } catch (e) {
       console.error(e)
-      loginActionDispatcher(LoginActions.loginFailed(e))
+      loginActionDispatcher(LoginActions.loginFailed(e.message))
     }
   }
 
@@ -132,7 +133,7 @@ export default function Login() {
         </main>
       )
     } else {
-      return <div>Loading ...</div>
+      return <Loading />
     }
   }
 

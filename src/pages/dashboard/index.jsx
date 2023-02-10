@@ -9,8 +9,9 @@ import Footer from '../../components/footer/Footer'
 import Nav from '../../components/nav/Nav'
 import TalikuatSection from '../../components/section/talikuat/TalikuatSection'
 import SapuLobangSection from '../../components/section/sapu_lobang/SapuLobangSection'
+import Loading from '../../components/loading/Loading'
 
-export default function Home() {
+export default function DashboardPage() {
   const authState = useSelector((state) => state.auth)
   const router = useRouter()
 
@@ -27,11 +28,7 @@ export default function Home() {
   }, [authState])
 
   const showLoading = () => {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        Loading ...
-      </div>
-    )
+    return <Loading />
   }
   const showDashboardComponent = () => {
     return (

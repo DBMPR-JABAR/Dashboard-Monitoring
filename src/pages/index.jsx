@@ -5,7 +5,7 @@ import Footer from '../components/footer/Footer'
 import Nav from '../components/nav/Nav'
 import RelatedAppSection from '../components/section/related_app/RelatedAppSection'
 
-export default function Home() {
+export default function LandingPage() {
   return (
     <>
       <Head>

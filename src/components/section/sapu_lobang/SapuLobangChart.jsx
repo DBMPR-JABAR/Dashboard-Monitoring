@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Bar } from 'react-chartjs-2'
 
 import axiosClient from '../../../services/axiosClient'
+import Loading from '../../loading/Loading'
 
 const testData = [
   { year: 2010, count: 10 },
@@ -37,7 +38,7 @@ export default function SapuLobangChart() {
   }, [])
 
   if (isLoading) {
-    return <div>Loading ...</div>
+    return <Loading />
   }
 
   return (

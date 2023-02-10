@@ -42,7 +42,7 @@ export default function Nav() {
 
   const showLoginComponent = () => (
     <Link
-      href="/login"
+      href="/LoginPage"
       className={`flex justify-between font-lato text-sm font-bold text-white py-2 px-4 rounded-lg transition-all ${
         isOnHover ? 'bg-green-700' : 'bg-primary-green'
       }`}
@@ -60,7 +60,7 @@ export default function Nav() {
     return (
       <div className="flex items-center">
         <Link
-          href="/dashboard"
+          href="/DashboardPage"
           className="font-lato text-sm font-bold text-gray-700 mr-8 transition-all hover:text-primary-green"
         >
           Dashboard
