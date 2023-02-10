@@ -1,13 +1,10 @@
-import { useState, useEffect, useMemo, useContext } from 'react'
-import { useRouter } from 'next/router'
-
+import { useState, useEffect, useMemo } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import Cookies from 'js-cookie'
+import { logoutUser } from '../../state/redux/auth'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
-import AuthContext from '../../context/auth_context'
-import * as AuthConstant from '../../helper/auth_constant'
 
 import Container from '../container/Container'
 
@@ -15,8 +12,8 @@ import Logo from '../logo/Logo'
 import loginFillWhite from '../../assets/icon/login_fill_white.svg'
 
 export default function Nav() {
-  const authContext = useContext(AuthContext)
-
+  const authState = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
   const [isOnHover, setIsOnHover] = useState(false)
   const [isOnTop, setIsOnTop] = useState(true)
   const { width } = useWindowDimensions()
@@ -42,12 +39,6 @@ export default function Nav() {
       return 48
     }
   }, [width])
-
-  const logoutUser = async () => {
-    Cookies.remove('tj-jwt-token')
-    localStorage.removeItem('tj-user')
-    authContext.dispatchAuthEvent({ type: AuthConstant.DELETE_USER })
-  }
 
   const showLoginComponent = () => (
     <Link
@@ -80,7 +71,7 @@ export default function Nav() {
           }`}
           onMouseEnter={() => setIsOnHover(true)}
           onMouseLeave={() => setIsOnHover(false)}
-          onClick={logoutUser}
+          onClick={() => dispatch(logoutUser())}
         >
           <span
             className={`block transition-all ${isOnHover ? 'mr-3' : 'mr-2'}`}
@@ -105,8 +96,8 @@ export default function Nav() {
             <Logo height={logoSize} />
           </Link>
           <div>
-            {authContext.state.user !== null
-              ? showUserComponent(authContext.state.user)
+            {authState.user !== null
+              ? showUserComponent()
               : showLoginComponent()}
           </div>
         </div>

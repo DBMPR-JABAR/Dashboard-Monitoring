@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
 
 import Head from 'next/head'
 import Hero from '../../components/hero/Hero'
@@ -8,21 +9,22 @@ import Footer from '../../components/footer/Footer'
 import Nav from '../../components/nav/Nav'
 import TalikuatSection from '../../components/section/talikuat/TalikuatSection'
 import SapuLobangSection from '../../components/section/sapu_lobang/SapuLobangSection'
-import AuthContext from '../../context/auth_context'
 
 export default function Home() {
+  const authState = useSelector((state) => state.auth)
   const router = useRouter()
-  const authContext = useContext(AuthContext)
 
   useEffect(() => {
     const checkAuthentication = async () => {
-      if (!authContext.state.user) {
+      if (!authState.user && !authState.isLoading) {
+        console.log('return back')
         await router.replace('/login')
       }
+      console.log(authState)
     }
 
     checkAuthentication()
-  }, [authContext.state.user, router])
+  }, [authState])
 
   const showLoading = () => {
     return (
@@ -46,7 +48,7 @@ export default function Home() {
   }
 
   const render = () => {
-    if (authContext.state.user) {
+    if (authState.user) {
       return showDashboardComponent()
     }
 

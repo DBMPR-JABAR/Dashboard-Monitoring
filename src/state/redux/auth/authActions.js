@@ -1,19 +1,21 @@
 import Cookies from 'js-cookie'
 
 import axiosClient from '../../../services/axiosClient'
-import { USER_JWT_TOKEN, USER_PROFILE } from './index'
 
 import * as AuthType from './authTypes'
 
-const setLoginLoading = () => {
+export const USER_JWT_TOKEN = 'tj-jwt-token'
+export const USER_PROFILE = 'tj-user'
+
+const setFetchUserLoading = () => {
   return {
-    type: AuthType.SET_LOGIN_LOADING,
+    type: AuthType.FETCH_USER_LOADING,
   }
 }
 
-const setLoginSuccess = (data) => {
+export const setUserAction = (data) => {
   return {
-    type: AuthType.SET_LOGIN_SUCCESS,
+    type: AuthType.SET_USER,
     payload: {
       user: data.user,
       token: data.token,
@@ -21,7 +23,17 @@ const setLoginSuccess = (data) => {
   }
 }
 
-const setLoginFailed = (err) => {
+const setFetchUserSuccess = (data) => {
+  return {
+    type: AuthType.FETCH_USER_SUCCESS,
+    payload: {
+      user: data.user,
+      token: data.token,
+    },
+  }
+}
+
+const setFetchUserFailed = (err) => {
   return {
     type: AuthType.SET_LOGIN_FAILED,
     payload: err,
@@ -47,35 +59,58 @@ const setLogoutError = (err) => {
   }
 }
 
-export const loginUser = (username, password) => {
+// export const loginUser = (username, password) => {
+//   return async (dispatch) => {
+//     dispatch(setLoginLoading())
+//     try {
+//       const response = await axiosClient.post('/auth/login', {
+//         email: username,
+//         password,
+//       })
+//       Cookies.set(USER_JWT_TOKEN, response.data.data.token.access_token)
+//       localStorage.setItem(
+//         USER_PROFILE,
+//         JSON.stringify(response.data.data.user)
+//       )
+//       dispatch(setLoginSuccess(response.data))
+//     } catch (e) {
+//       console.error(e)
+//       dispatch(setLoginFailed(e))
+//     }
+//   }
+// }
+
+export const setUser = (data) => {
   return async (dispatch) => {
-    dispatch(setLoginLoading())
+    await Cookies.set(USER_JWT_TOKEN, data.token.access_token)
+    await localStorage.setItem(USER_PROFILE, JSON.stringify(data.user))
+    dispatch(setUserAction(data))
+  }
+}
+
+export const fetchUser = () => {
+  return async (dispatch) => {
+    dispatch(setFetchUserLoading())
     try {
-      const response = await axiosClient.post('/auth/login', {
-        email: username,
-        password,
-      })
-      Cookies.set(USER_JWT_TOKEN, response.data.data.token.access_token)
-      localStorage.setItem(
-        USER_PROFILE,
-        JSON.stringify(response.data.data.user)
-      )
-      dispatch(setLoginSuccess(response.data))
+      const user = await JSON.parse(localStorage.getItem(USER_PROFILE))
+      const token = await Cookies.get(USER_JWT_TOKEN)
+      dispatch(setFetchUserSuccess({ user, token }))
     } catch (e) {
-      console.log(e)
-      dispatch(setLoginFailed(e))
+      console.error(e)
+      dispatch(setFetchUserFailed(e))
     }
   }
 }
 
 export const logoutUser = () => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(setLogoutLoading())
     try {
-      Cookies.remove(USER_JWT_TOKEN)
-      localStorage.removeItem(USER_PROFILE)
+      await Cookies.remove(USER_JWT_TOKEN)
+      await localStorage.removeItem(USER_PROFILE)
       dispatch(setLogoutSuccess())
     } catch (e) {
+      console.error(e)
       dispatch(setLogoutError(e))
     }
   }

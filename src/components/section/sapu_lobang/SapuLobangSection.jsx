@@ -15,7 +15,7 @@ export default function SapuLobangSection() {
         <div className="w-full bg-white mt-8 rounded-lg">
           <span className="inline-block m-6 font-bold">Sapu Lobang</span>
           <div className="border-t border-gray-300 p-6 overflow-x-scroll">
-            <SapuLobangChart />
+            {/* <SapuLobangChart /> */}
           </div>
         </div>
       </div>

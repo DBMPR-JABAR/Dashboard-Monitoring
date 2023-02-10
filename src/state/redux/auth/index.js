@@ -1,3 +1,7 @@
-export {}
-export const USER_JWT_TOKEN = 'tj-jwt-token'
-export const USER_PROFILE = 'tj-user'
+export {
+  USER_PROFILE,
+  USER_JWT_TOKEN,
+  setUser,
+  fetchUser,
+  logoutUser,
+} from './authActions'
