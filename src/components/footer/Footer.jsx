@@ -31,7 +31,7 @@ export default function Footer() {
     <footer className="mt-32 bg-white">
       <div className="px-8 py-12 border-b border-gray-300 relative xl:px-32 2xl:px-48">
         <div className="relative z-10">
-          <Link href="/">
+          <Link href="/" className="inline-block">
             <Logo height={logoSize} />
           </Link>
           <div className="mt-12 lg:flex">

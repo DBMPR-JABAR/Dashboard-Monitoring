@@ -1,0 +1,30 @@
+.ShimmerContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: shimmer-loading 2s infinite;
+
+  .Shimmer {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.75);
+    transform: skewX(-20deg);
+    box-shadow: 0 0 30px 30px rgba(255, 255, 255, 0.05);
+  }
+
+}
+
+@keyframes shimmer-loading {
+  0% {
+    transform: translateX(-150%)
+  }
+  50% {
+    transform: translateX(-60%)
+  }
+  100% {
+    transform: translateX(150%)
+  }
+}

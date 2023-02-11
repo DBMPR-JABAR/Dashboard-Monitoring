@@ -8,8 +8,8 @@ import OverviewSection from '../../components/section/overview/OverviewSection'
 import Footer from '../../components/footer/Footer'
 import Nav from '../../components/nav/Nav'
 import TalikuatSection from '../../components/section/talikuat/TalikuatSection'
-import SapuLobangSection from '../../components/section/sapu_lobang/SapuLobangSection'
-import Loading from '../../components/loading/Loading'
+import SipelajarSection from '../../components/section/sipelajar/SipelajarSection'
+import LoadingSpinner from '../../components/loading/spinner/LoadingSpinner'
 
 export default function DashboardPage() {
   const authState = useSelector((state) => state.auth)
@@ -28,7 +28,7 @@ export default function DashboardPage() {
   }, [authState])
 
   const showLoading = () => {
-    return <Loading />
+    return <LoadingSpinner />
   }
   const showDashboardComponent = () => {
     return (
@@ -37,7 +37,7 @@ export default function DashboardPage() {
         <Hero />
         <main>
           <OverviewSection />
-          <SapuLobangSection />
+          <SipelajarSection />
         </main>
         <Footer />
       </>

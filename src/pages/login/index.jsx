@@ -22,7 +22,7 @@ import InputText from '../../components/form/input/InputText'
 import Button from '../../components/form/input/Button'
 import TextLink from '../../components/link/TextLink'
 import isEmptyOrSpaces from '../../helper/stringUtils'
-import Loading from '../../components/loading/Loading'
+import LoadingSpinner from '../../components/loading/spinner/LoadingSpinner'
 
 export default function LoginPage() {
   const authState = useSelector((state) => state.auth)
@@ -133,7 +133,7 @@ export default function LoginPage() {
         </main>
       )
     } else {
-      return <Loading />
+      return <LoadingSpinner />
     }
   }
 

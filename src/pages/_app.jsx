@@ -1,4 +1,5 @@
 import './globals.scss'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import { Chart as ChartJS, registerables } from 'chart.js'
 import { Provider } from 'react-redux'

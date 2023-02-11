@@ -60,7 +60,7 @@ export default function Nav() {
     return (
       <div className="flex items-center">
         <Link
-          href="/DashboardPage"
+          href="/dashboard"
           className="font-lato text-sm font-bold text-gray-700 mr-8 transition-all hover:text-primary-green"
         >
           Dashboard
