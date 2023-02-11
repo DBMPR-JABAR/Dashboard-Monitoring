@@ -8,6 +8,8 @@ import AppWrapper from '../components/wrapper/AppWrapper'
 import appStore from '../state/redux/appStore'
 
 ChartJS.register(...registerables)
+ChartJS.defaults.font.family = 'Intro'
+ChartJS.defaults.color = '#212121'
 
 export default function App({ Component, pageProps }) {
   return (

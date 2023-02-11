@@ -13,6 +13,14 @@ export default function SkeletonBarChart({ width = 1000 }) {
     }
   }, [width, windowWidth])
 
+  const heightBar = useMemo(() => {
+    if (windowWidth > 1024) {
+      return 500
+    } else {
+      return 300
+    }
+  }, [width, windowWidth])
+
   return (
     <div className="p-8" style={{ width: widthContainer }}>
       <div className="flex justify-center mb-8">
@@ -42,34 +50,66 @@ export default function SkeletonBarChart({ width = 1000 }) {
           </div>
           <div>
             <div className="flex justify-center items-end">
-              <Skeleton width={56} height="300px" />
-              <Skeleton className="ml-3" width={56} height="250px" />
-              <Skeleton className="ml-3" width={56} height="200px" />
+              <Skeleton width={56} height={`${heightBar}px`} />
+              <Skeleton
+                className="ml-3"
+                width={56}
+                height={`${heightBar - 50}px`}
+              />
+              <Skeleton
+                className="ml-3"
+                width={56}
+                height={`${heightBar - 100}px`}
+              />
             </div>
             <div className="mt-3 text-center text-gray-400">Category 1</div>
           </div>
         </div>
         <div>
           <div className="flex justify-center items-end">
-            <Skeleton width={56} height="300px" />
-            <Skeleton className="ml-3" width={56} height="250px" />
-            <Skeleton className="ml-3" width={56} height="200px" />
+            <Skeleton width={56} height={`${heightBar}px`} />
+            <Skeleton
+              className="ml-3"
+              width={56}
+              height={`${heightBar - 50}px`}
+            />
+            <Skeleton
+              className="ml-3"
+              width={56}
+              height={`${heightBar - 100}px`}
+            />
           </div>
           <div className="mt-3 text-center text-gray-400">Category 2</div>
         </div>
         <div>
           <div className="flex justify-center items-end">
-            <Skeleton width={56} height="300px" />
-            <Skeleton className="ml-3" width={56} height="250px" />
-            <Skeleton className="ml-3" width={56} height="200px" />
+            <Skeleton width={56} height={`${heightBar}px`} />
+            <Skeleton
+              className="ml-3"
+              width={56}
+              height={`${heightBar - 50}px`}
+            />
+            <Skeleton
+              className="ml-3"
+              width={56}
+              height={`${heightBar - 100}px`}
+            />
           </div>
           <div className="mt-3 text-center text-gray-400">Category 3</div>
         </div>
         <div>
           <div className="flex justify-center items-end">
-            <Skeleton width={56} height="300px" />
-            <Skeleton className="ml-3" width={56} height="250px" />
-            <Skeleton className="ml-3" width={56} height="200px" />
+            <Skeleton width={56} height={`${heightBar}px`} />
+            <Skeleton
+              className="ml-3"
+              width={56}
+              height={`${heightBar - 50}px`}
+            />
+            <Skeleton
+              className="ml-3"
+              width={56}
+              height={`${heightBar - 100}px`}
+            />
           </div>
           <div className="mt-3 text-center text-gray-400">Category 4</div>
         </div>

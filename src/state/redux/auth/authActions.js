@@ -1,10 +1,11 @@
 import Cookies from 'js-cookie'
 
-import axiosClient from '../../../services/axiosClient'
+import moment from 'moment'
 
 import * as AuthType from './authTypes'
 
 export const USER_JWT_TOKEN = 'tj-jwt-token'
+export const USER_JWT_EXPIRE_TIMESTAMP = 'tj-jwt-expire-timestamp'
 export const USER_PROFILE = 'tj-user'
 
 const setFetchUserLoading = () => {
@@ -59,32 +60,20 @@ const setLogoutError = (err) => {
   }
 }
 
-// export const loginUser = (username, password) => {
-//   return async (dispatch) => {
-//     dispatch(setLoginLoading())
-//     try {
-//       const response = await axiosClient.post('/auth/login', {
-//         email: username,
-//         password,
-//       })
-//       Cookies.set(USER_JWT_TOKEN, response.data.data.token.access_token)
-//       localStorage.setItem(
-//         USER_PROFILE,
-//         JSON.stringify(response.data.data.user)
-//       )
-//       dispatch(setLoginSuccess(response.data))
-//     } catch (e) {
-//       console.error(e)
-//       dispatch(setLoginFailed(e))
-//     }
-//   }
-// }
-
 export const setUser = (data) => {
   return async (dispatch) => {
     await Cookies.set(USER_JWT_TOKEN, data.token.access_token)
+    const expireTimeStamp = moment().add(1, 'days').toDate().getTime()
+    await Cookies.set(USER_JWT_EXPIRE_TIMESTAMP, expireTimeStamp)
     await localStorage.setItem(USER_PROFILE, JSON.stringify(data.user))
-    dispatch(setUserAction(data))
+    const user = {
+      user: data.user,
+      token: {
+        accessToken: data.token.access_token,
+        expireTimeStamp: expireTimeStamp,
+      },
+    }
+    dispatch(setUserAction(user))
   }
 }
 
@@ -93,8 +82,21 @@ export const fetchUser = () => {
     dispatch(setFetchUserLoading())
     try {
       const user = await JSON.parse(localStorage.getItem(USER_PROFILE))
-      const token = await Cookies.get(USER_JWT_TOKEN)
-      dispatch(setFetchUserSuccess({ user, token }))
+      const accessToken = await Cookies.get(USER_JWT_TOKEN)
+      const expireTimeStamp = await Cookies.get(USER_JWT_EXPIRE_TIMESTAMP)
+      let token = null
+      if (accessToken && expireTimeStamp) {
+        token = {
+          accessToken: accessToken,
+          expireTimeStamp,
+        }
+      }
+      dispatch(
+        setFetchUserSuccess({
+          user,
+          token: token,
+        })
+      )
     } catch (e) {
       console.error(e)
       dispatch(setFetchUserFailed(e))
@@ -107,6 +109,7 @@ export const logoutUser = () => {
     dispatch(setLogoutLoading())
     try {
       await Cookies.remove(USER_JWT_TOKEN)
+      await Cookies.remove(USER_JWT_EXPIRE_TIMESTAMP)
       await localStorage.removeItem(USER_PROFILE)
       dispatch(setLogoutSuccess())
     } catch (e) {

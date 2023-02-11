@@ -16,6 +16,10 @@ module.exports = {
         'primary-green': '#16A75C',
         'primary-blue': '#1E88E5',
         'primary-yellow': '#FFD026',
+        error: '#DD5E5E',
+        warning: '#FED32C',
+        info: '#1E88E5',
+        success: '#16A75C',
         yellow: {
           50: '#FFF9E1',
           100: '#FFEEB4',

@@ -1,79 +1,137 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Bar } from 'react-chartjs-2'
 
-import axiosClient from '../../../services/axiosClient'
-import LoadingSpinner from '../../loading/spinner/LoadingSpinner'
+import { useDispatch, useSelector } from 'react-redux'
 import SkeletonBarChart from '../../loading/chart/bar/SkeletonBarChart'
+import useWindowDimensions from '../../../hooks/useWindowDimensions'
+import fetchRekapSapuLobang from '../../../state/redux/dashboard/rekap/sapu_lobang/rekapSapuLobangActions'
+import isEmptyOrSpaces from '../../../helper/stringUtils'
 
-const testData = [
-  { year: 2010, count: 10 },
-  { year: 2011, count: 20 },
-  { year: 2012, count: 15 },
-  { year: 2013, count: 25 },
-  { year: 2014, count: 22 },
-  { year: 2015, count: 30 },
-  { year: 2016, count: 28 },
-]
+function Chart({ data: rekapSapuLobang }) {
+  const listUptd = rekapSapuLobang.sisa.map((elem) => elem.groupId)
+  const datasetSisaLubang = {
+    label: 'Sisa Lubang',
+    data: rekapSapuLobang.sisa.map((elem) => elem.jumlah),
+    backgroundColor: '#DD5E5E',
+  }
+  const datasetLubangDirencanakan = {
+    label: 'Lubang Yang Direncanakan',
+    data: rekapSapuLobang.perencanaan.map((elem) => elem.jumlah),
+    backgroundColor: '#FED32C',
+  }
+  const datasetLubangSelesai = {
+    label: 'Lubang Yang Ditangani',
+    data: rekapSapuLobang.ditangani.map((elem) => elem.jumlah),
+    backgroundColor: '#16A75C',
+  }
 
-// export default function SapuLobangChart() {
-//   const [data, setData] = useState({})
-//   const [isLoading, setIsLoading] = useState(true)
-//   const [error, setError] = useState('')
-//
-//   useEffect(() => {
-//     const getSapuLobangData = async () => {
-//       try {
-//         setIsLoading(true)
-//         const response = await axiosClient.get('/sapu-lubang/rekap-dashboard')
-//         console.log(response.data)
-//         setData(response.data)
-//         setIsLoading(false)
-//       } catch (err) {
-//         console.log(err)
-//         setIsLoading(false)
-//         setError(err)
-//       }
-//     }
-//
-//     getSapuLobangData()
-//   }, [])
-//
-//   if (isLoading) {
-//     return <LoadingSpinner />
-//   }
-//
-//   return (
-//     <Bar
-//       width={null}
-//       height={null}
-//       options={{
-//         responsive: true,
-//       }}
-//       data={{
-//         labels: data.data.sisa.map((elem) => elem.groupId),
-//         datasets: [
-//           {
-//             label: 'Sisa Lubang',
-//             data: data.data.sisa.map((elem) => elem.jumlah),
-//           },
-//           {
-//             label: 'Lubang Yang Direncanakan Untuk Ditangani',
-//             data: data.data.perencanaan.map((elem) => elem.jumlah),
-//           },
-//           {
-//             label: 'Lubang Yang Sudah Ditangani',
-//             data: data.data.ditangani.map((elem) => elem.jumlah),
-//           },
-//         ],
-//       }}
-//     />
-//   )
-// }
+  const chartOptions = {
+    interaction: {
+      mode: 'index',
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          stepSize: 500,
+          maxTicksLimit: 6,
+        },
+        border: {
+          dash: [8, 8],
+          color: '#212121',
+        },
+        grid: {
+          tickColor: '#212121',
+        },
+      },
+      x: {
+        grid: {
+          display: false,
+        },
+        border: {
+          color: '#212121',
+          tickColor: '#212121',
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: {
+          font: {
+            size: 13,
+          },
+          useBorderRadius: true,
+          borderRadius: 2,
+          padding: 32,
+        },
+      },
+    },
+  }
+
+  return (
+    <div className="p-8">
+      <Bar
+        options={chartOptions}
+        data={{
+          labels: [
+            'UPTD I',
+            'UPTD II',
+            'UPTD III',
+            'UPTD IV',
+            'UPTD V',
+            'UPTD VI',
+          ],
+          datasets: [
+            datasetSisaLubang,
+            datasetLubangDirencanakan,
+            datasetLubangSelesai,
+          ],
+        }}
+      />
+    </div>
+  )
+}
 
 export default function SapuLobangChart() {
+  const rekapSapuLobangState = useSelector(
+    (state) => state.dashboard.rekap.sapuLobang
+  )
+  const dispatch = useDispatch()
+  const { width } = useWindowDimensions()
+
+  const minHeightContainer = useMemo(() => {
+    if (width > 1024) {
+      return '500px'
+    } else {
+      return `300px`
+    }
+  }, [width, width])
+
+  useEffect(() => {
+    dispatch(fetchRekapSapuLobang())
+  }, [dispatch])
+
+  const showRekapSapuLobangChart = () => {
+    if (rekapSapuLobangState.isLoading) {
+      return <SkeletonBarChart width={1200} />
+    }
+
+    if (!isEmptyOrSpaces(rekapSapuLobangState.error)) {
+      return <div>rekapSapuLobangState.error</div>
+    } else {
+      return <Chart data={rekapSapuLobangState.data} />
+    }
+  }
+
   return (
-    <div className="min-w-[800px] min-h-[300px]">
-      <SkeletonBarChart width={1200} />
+    <div
+      className="min-w-[800px]"
+      style={{
+        minHeight: minHeightContainer,
+      }}
+    >
+      {showRekapSapuLobangChart()}
     </div>
   )
 }
