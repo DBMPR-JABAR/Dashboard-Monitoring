@@ -2,22 +2,21 @@ import { useEffect, useMemo } from 'react'
 import { Bar } from 'react-chartjs-2'
 
 import { useDispatch, useSelector } from 'react-redux'
-import SkeletonBarChart from '../../loading/chart/bar/SkeletonBarChart'
-import useWindowDimensions from '../../../hooks/useWindowDimensions'
-import fetchRekapSapuLobang from '../../../state/redux/dashboard/rekap/sapu_lobang/rekapSapuLobangActions'
-import isEmptyOrSpaces from '../../../helper/stringUtils'
+import SkeletonBarChart from '../../../loading/chart/bar/SkeletonBarChart'
+import useWindowDimensions from '../../../../hooks/useWindowDimensions'
+import fetchRekapSapuLobang from '../../../../state/redux/dashboard/rekap/sapu_lobang/rekapSapuLobangActions'
+import isEmptyOrSpaces from '../../../../helper/stringUtils'
 
 function Chart({ data: rekapSapuLobang }) {
-  const listUptd = rekapSapuLobang.sisa.map((elem) => elem.groupId)
   const datasetSisaLubang = {
     label: 'Sisa Lubang',
     data: rekapSapuLobang.sisa.map((elem) => elem.jumlah),
-    backgroundColor: '#DD5E5E',
+    backgroundColor: '#E53935',
   }
   const datasetLubangDirencanakan = {
     label: 'Lubang Yang Direncanakan',
     data: rekapSapuLobang.perencanaan.map((elem) => elem.jumlah),
-    backgroundColor: '#FED32C',
+    backgroundColor: '#1E88E5',
   }
   const datasetLubangSelesai = {
     label: 'Lubang Yang Ditangani',
@@ -97,7 +96,7 @@ export default function SapuLobangChart() {
   const rekapSapuLobangState = useSelector(
     (state) => state.dashboard.rekap.sapuLobang
   )
-  const dispatch = useDispatch()
+
   const { width } = useWindowDimensions()
 
   const minHeightContainer = useMemo(() => {
@@ -107,10 +106,6 @@ export default function SapuLobangChart() {
       return `300px`
     }
   }, [width, width])
-
-  useEffect(() => {
-    dispatch(fetchRekapSapuLobang())
-  }, [dispatch])
 
   const showRekapSapuLobangChart = () => {
     if (rekapSapuLobangState.isLoading) {

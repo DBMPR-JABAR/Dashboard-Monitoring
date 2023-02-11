@@ -8,7 +8,7 @@ export default function SubOverviewCard({
   jumlahJembatan,
 }) {
   return (
-    <div className="p-6 rounded-lg relative text-gray-900 bg-white">
+    <div className="p-6 rounded-lg relative text-gray-900 bg-white border border-gray-300">
       <div className="flex justify-between items-center">
         <span className="font-bold">{uptdName}</span>
         <div className="flex items-center px-4 py-1 rounded-full text-white bg-primary-green">

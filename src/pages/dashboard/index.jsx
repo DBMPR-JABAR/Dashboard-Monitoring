@@ -60,7 +60,7 @@ export default function DashboardPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icons/logo_temanjabar.ico" />
       </Head>
-      <div className="bg-green-50">{render()}</div>
+      <div className="bg-green-50/[0.5]">{render()}</div>
     </>
   )
 }

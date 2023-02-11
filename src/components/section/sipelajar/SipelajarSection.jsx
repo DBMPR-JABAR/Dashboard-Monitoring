@@ -1,20 +1,101 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Skeleton from 'react-loading-skeleton'
 import Container from '../../container/Container'
-import SapuLobangChart from './SapuLobangChart'
+import SapuLobangChart from './sapu_lobang/SapuLobangChart'
+import CardSuccess from '../../card/CardSuccess'
+import CardInfo from '../../card/CardInfo'
+import CardError from '../../card/CardError'
+import fetchRekapSapuLobang from '../../../state/redux/dashboard/rekap/sapu_lobang/rekapSapuLobangActions'
 
 export default function SipelajarSection() {
+  const rekapSapuLobangState = useSelector(
+    (state) => state.dashboard.rekap.sapuLobang
+  )
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchRekapSapuLobang())
+  }, [dispatch])
+
+  const showTotalSisaLubang = () => {
+    if (rekapSapuLobangState.isLoading) {
+      return <Skeleton className="mt-3" height="60%" />
+    } else {
+      return (
+        <div className="text-2xl text-red-800 font-bold font-lato mt-3">
+          {rekapSapuLobangState.data.sisa.reduce(
+            (total, obj) => total + obj.jumlah,
+            0
+          )}
+        </div>
+      )
+    }
+  }
+
+  const showTotalLubangDirencanakan = () => {
+    if (rekapSapuLobangState.isLoading) {
+      return <Skeleton className="mt-3" height="60%" />
+    } else {
+      return (
+        <div className="text-2xl text-blue-800 font-bold font-lato mt-3">
+          {rekapSapuLobangState.data.perencanaan.reduce(
+            (total, obj) => total + obj.jumlah,
+            0
+          )}
+        </div>
+      )
+    }
+  }
+
+  const showTotalLubangDitangani = () => {
+    if (rekapSapuLobangState.isLoading) {
+      return <Skeleton className="mt-3" height="60%" />
+    } else {
+      return (
+        <div className="text-2xl text-green-800 font-bold font-lato mt-3">
+          {rekapSapuLobangState.data.ditangani.reduce(
+            (total, obj) => total + obj.jumlah,
+            0
+          )}
+        </div>
+      )
+    }
+  }
+
   return (
     <Container>
       <div className="mt-16">
-        <span className="block text-center font-intro font-bold text-xl lg:inline-block lg:text-left lg:text-2xl">
+        <span className="block text-center font-intro font-bold text-2xl">
           Sipelajar
         </span>
-        <span className="hidden mx-2 font-intro lg:inline-block">-</span>
-        <span className="block font-intro text-center mt-3 lg:inline-block lg:text-left lg:text-xl">
+        <span className="block font-intro text-center mt-3">
           Sistem Pemeliharaan Jalan dan Jembatan Jawa Barat
         </span>
-        <div className="w-full bg-white mt-8 rounded-lg">
-          <span className="inline-block my-6 mx-8 font-bold font-lora text-xl lg:text-2xl">
-            Sapu Lobang
+        <div className="mt-8">
+          <span className="font-bold font-lora text-xl">Sapu Lobang</span>
+          <div className="mt-8 lg:grid lg:grid-cols-3 lg:gap-8">
+            <CardError className="mb-8 lg:mb-0">
+              <div className="font-bold font-lato">Total Sisa Lubang</div>
+              {showTotalSisaLubang()}
+            </CardError>
+            <CardInfo className="mb-8 lg:mb-0">
+              <div className="font-bold font-lato">
+                Total Lubang Yang Direncanakan
+              </div>
+              {showTotalLubangDirencanakan()}
+            </CardInfo>
+            <CardSuccess>
+              <div className="font-bold font-lato">
+                Total Lubang Yang Ditangani
+              </div>
+              {showTotalLubangDitangani()}
+            </CardSuccess>
+          </div>
+        </div>
+        <div className="w-full bg-white mt-8 rounded-lg border border-gray-300">
+          <span className="inline-block my-6 mx-8 font-bold font-lora text-xl">
+            Chart Sapu Lobang
           </span>
           <div className="border-t border-gray-300 overflow-x-auto">
             <SapuLobangChart />
