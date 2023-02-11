@@ -1,15 +1,13 @@
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton'
-import Container from '../../container/Container'
-import SapuLobangChart from './sapu_lobang/SapuLobangChart'
-import CardSuccess from '../../card/CardSuccess'
-import CardInfo from '../../card/CardInfo'
-import CardError from '../../card/CardError'
-import fetchRekapSapuLobang from '../../../state/redux/dashboard/rekap/sapu_lobang/rekapSapuLobangActions'
-import SapuLobangSubSection from './sapu_lobang/SapuLobangSubSection'
+import fetchRekapSapuLobang from '../../../../state/redux/dashboard/rekap/sapu_lobang/rekapSapuLobangActions'
+import CardError from '../../../card/CardError'
+import CardInfo from '../../../card/CardInfo'
+import CardSuccess from '../../../card/CardSuccess'
+import SapuLobangChart from './SapuLobangChart'
 
-export default function SipelajarSection() {
+export default function SapuLobangSubSection() {
   const rekapSapuLobangState = useSelector(
     (state) => state.dashboard.rekap.sapuLobang
   )
@@ -65,16 +63,36 @@ export default function SipelajarSection() {
   }
 
   return (
-    <Container>
-      <div className="mt-16">
-        <span className="block text-center font-intro font-bold text-2xl">
-          Sipelajar
-        </span>
-        <span className="block font-intro text-center mt-3">
-          Sistem Pemeliharaan Jalan dan Jembatan Jawa Barat
-        </span>
+    <>
+      <div className="mt-8">
+        <span className="font-bold font-lora text-xl">Sapu Lobang</span>
+        <div className="mt-8 lg:grid lg:grid-cols-3 lg:gap-8">
+          <CardError className="mb-8 lg:mb-0">
+            <div className="font-bold font-lato">Total Sisa Lubang</div>
+            {showTotalSisaLubang()}
+          </CardError>
+          <CardInfo className="mb-8 lg:mb-0">
+            <div className="font-bold font-lato">
+              Total Lubang Yang Direncanakan
+            </div>
+            {showTotalLubangDirencanakan()}
+          </CardInfo>
+          <CardSuccess>
+            <div className="font-bold font-lato">
+              Total Lubang Yang Ditangani
+            </div>
+            {showTotalLubangDitangani()}
+          </CardSuccess>
+        </div>
       </div>
-      <SapuLobangSubSection />
-    </Container>
+      <div className="w-full bg-white mt-8 rounded-lg border border-gray-300">
+        <span className="inline-block my-6 mx-8 font-bold font-lora text-xl">
+          Chart Sapu Lobang
+        </span>
+        <div className="border-t border-gray-300 overflow-x-auto">
+          <SapuLobangChart />
+        </div>
+      </div>
+    </>
   )
 }
