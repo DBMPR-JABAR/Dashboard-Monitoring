@@ -1,15 +1,15 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
 import Head from 'next/head'
-import Hero from '../../components/hero/Hero'
 import OverviewSection from '../../components/section/overview/OverviewSection'
 import Footer from '../../components/footer/Footer'
 import Nav from '../../components/nav/Nav'
 import TalikuatSection from '../../components/section/talikuat/TalikuatSection'
 import SipelajarSection from '../../components/section/sipelajar/SipelajarSection'
 import LoadingSpinner from '../../components/loading/spinner/LoadingSpinner'
+import Container from '../../components/container/Container'
 
 export default function DashboardPage() {
   const authState = useSelector((state) => state.auth)
@@ -18,14 +18,12 @@ export default function DashboardPage() {
   useEffect(() => {
     const checkAuthentication = async () => {
       if (!authState.user && !authState.isLoading) {
-        console.log('return back')
         await router.replace('/login')
       }
-      console.log(authState)
     }
 
     checkAuthentication()
-  }, [authState])
+  }, [router, authState])
 
   const showLoading = () => {
     return <LoadingSpinner />
@@ -34,9 +32,19 @@ export default function DashboardPage() {
     return (
       <>
         <Nav />
-        <Hero />
         <main>
+          <Container>
+            <div className="my-16">
+              <span className="block text-center font-intro font-bold text-2xl">
+                Dashboard Monitoring Teman Jabar
+              </span>
+              <span className="block font-intro text-center mt-3">
+                Dinas Bina Marga dan Penataan Ruang Provinsi Jawa Barat
+              </span>
+            </div>
+          </Container>
           <OverviewSection />
+          <TalikuatSection />
           <SipelajarSection />
         </main>
         <Footer />

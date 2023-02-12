@@ -36,7 +36,7 @@ const setFetchUserSuccess = (data) => {
 
 const setFetchUserFailed = (err) => {
   return {
-    type: AuthType.SET_LOGIN_FAILED,
+    type: AuthType.FETCH_USER_FAILED,
     payload: err,
   }
 }
@@ -84,19 +84,31 @@ export const fetchUser = () => {
       const user = await JSON.parse(localStorage.getItem(USER_PROFILE))
       const accessToken = await Cookies.get(USER_JWT_TOKEN)
       const expireTimeStamp = await Cookies.get(USER_JWT_EXPIRE_TIMESTAMP)
-      let token = null
-      if (accessToken && expireTimeStamp) {
-        token = {
-          accessToken: accessToken,
-          expireTimeStamp,
+      if (moment(parseInt(expireTimeStamp, 10)) > moment()) {
+        let token = null
+        if (accessToken && expireTimeStamp) {
+          token = {
+            accessToken: accessToken,
+            expireTimeStamp,
+          }
         }
+        dispatch(
+          setFetchUserSuccess({
+            user,
+            token: token,
+          })
+        )
+      } else {
+        await Cookies.remove(USER_JWT_TOKEN)
+        await Cookies.remove(USER_JWT_EXPIRE_TIMESTAMP)
+        await localStorage.removeItem(USER_PROFILE)
+        dispatch(
+          setFetchUserSuccess({
+            user: null,
+            token: null,
+          })
+        )
       }
-      dispatch(
-        setFetchUserSuccess({
-          user,
-          token: token,
-        })
-      )
     } catch (e) {
       console.error(e)
       dispatch(setFetchUserFailed(e))

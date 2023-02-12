@@ -42,7 +42,7 @@ export default function Nav() {
 
   const showLoginComponent = () => (
     <Link
-      href="/LoginPage"
+      href="/login"
       className={`flex justify-between font-lato text-sm font-bold text-white py-2 px-4 rounded-lg transition-all ${
         isOnHover ? 'bg-green-700' : 'bg-primary-green'
       }`}
@@ -72,6 +72,9 @@ export default function Nav() {
           onMouseEnter={() => setIsOnHover(true)}
           onMouseLeave={() => setIsOnHover(false)}
           onClick={() => dispatch(logoutUser())}
+          onKeyDown={() => dispatch(logoutUser())}
+          role="button"
+          tabIndex={0}
         >
           <span
             className={`block transition-all ${isOnHover ? 'mr-3' : 'mr-2'}`}

@@ -20,7 +20,6 @@ import Container from '../../components/container/Container'
 import InputPassword from '../../components/form/input/InputPassword'
 import InputText from '../../components/form/input/InputText'
 import Button from '../../components/form/input/Button'
-import TextLink from '../../components/link/TextLink'
 import isEmptyOrSpaces from '../../helper/stringUtils'
 import LoadingSpinner from '../../components/loading/spinner/LoadingSpinner'
 
@@ -49,11 +48,9 @@ export default function LoginPage() {
         email: username,
         password,
       })
-      console.log(response)
       dispatch(AuthActions.setUser(response.data.data))
       loginActionDispatcher(LoginActions.loginSucces())
     } catch (e) {
-      console.error(e)
       loginActionDispatcher(LoginActions.loginFailed(e.message))
     }
   }
@@ -62,13 +59,13 @@ export default function LoginPage() {
     if (loginState.isSuccess) {
       router.replace('/dashboard')
     }
-  }, [loginState.isSuccess])
+  }, [loginState.isSuccess, router])
 
   useEffect(() => {
     if (authState.user) {
       router.replace('/dashboard')
     }
-  }, [authState.user])
+  }, [authState.user, router])
 
   const showErrorMessageComponent = (errorMessage) => (
     <div className="flex items-center mt-10 p-4 bg-red-50 rounded-lg border border-red-800">

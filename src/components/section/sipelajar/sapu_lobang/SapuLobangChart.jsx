@@ -1,11 +1,8 @@
-import { useEffect, useMemo } from 'react'
 import { Bar } from 'react-chartjs-2'
 
-import { useDispatch, useSelector } from 'react-redux'
-import SkeletonBarChart from '../../../loading/chart/bar/SkeletonBarChart'
-import useWindowDimensions from '../../../../hooks/useWindowDimensions'
-import fetchRekapSapuLobang from '../../../../state/redux/dashboard/rekap/sapu_lobang/rekapSapuLobangActions'
+import { useSelector } from 'react-redux'
 import isEmptyOrSpaces from '../../../../helper/stringUtils'
+import LoadingSpinnerWithText from '../../../loading/spinner/LoadingSpinnerWithText'
 
 function Chart({ data: rekapSapuLobang }) {
   const datasetSisaLubang = {
@@ -69,7 +66,7 @@ function Chart({ data: rekapSapuLobang }) {
   }
 
   return (
-    <div className="p-8">
+    <div className="flex justify-center min-w-[800px] aspect-[2/1] p-8">
       <Bar
         options={chartOptions}
         data={{
@@ -97,36 +94,17 @@ export default function SapuLobangChart() {
     (state) => state.dashboard.rekap.sapuLobang
   )
 
-  const { width } = useWindowDimensions()
-
-  const minHeightContainer = useMemo(() => {
-    if (width > 1024) {
-      return '500px'
-    } else {
-      return `300px`
-    }
-  }, [width, width])
-
   const showRekapSapuLobangChart = () => {
     if (rekapSapuLobangState.isLoading) {
-      return <SkeletonBarChart width={1200} />
+      return <LoadingSpinnerWithText />
     }
 
     if (!isEmptyOrSpaces(rekapSapuLobangState.error)) {
-      return <div>rekapSapuLobangState.error</div>
+      return <div>{rekapSapuLobangState.error}</div>
     } else {
       return <Chart data={rekapSapuLobangState.data} />
     }
   }
 
-  return (
-    <div
-      className="min-w-[800px]"
-      style={{
-        minHeight: minHeightContainer,
-      }}
-    >
-      {showRekapSapuLobangChart()}
-    </div>
-  )
+  return <div>{showRekapSapuLobangChart()}</div>
 }

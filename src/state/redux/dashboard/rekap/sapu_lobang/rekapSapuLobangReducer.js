@@ -19,6 +19,7 @@ const rekapSapuLobangReducer = (
       return {
         ...state,
         isLoading: true,
+        error: null,
       }
     case FETCH_REKAP_SAPU_LOBANG_SUCCESS:
       return {

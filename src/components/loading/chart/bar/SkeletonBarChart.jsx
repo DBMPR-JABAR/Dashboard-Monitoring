@@ -1,4 +1,4 @@
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import Skeleton from 'react-loading-skeleton'
 import { useMemo } from 'react'
 import useWindowDimensions from '../../../../hooks/useWindowDimensions'
 
@@ -19,7 +19,7 @@ export default function SkeletonBarChart({ width = 1000 }) {
     } else {
       return 300
     }
-  }, [width, windowWidth])
+  }, [windowWidth])
 
   return (
     <div className="p-8" style={{ width: widthContainer }}>
