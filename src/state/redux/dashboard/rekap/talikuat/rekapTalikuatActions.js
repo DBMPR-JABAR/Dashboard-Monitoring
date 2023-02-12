@@ -32,7 +32,6 @@ const fetchRekapTalikuat = () => {
       const response = await axios.get(
         'https://tk.temanjabar.net/api/get-data-pembangunan22'
       )
-      console.log(response.data)
       if (response.data.status) {
         dispatch(fetchRekapTalikuatSuccess(response.data.data))
       } else {

@@ -106,5 +106,5 @@ export default function SapuLobangChart() {
     }
   }
 
-  return <div>{showRekapSapuLobangChart()}</div>
+  return showRekapSapuLobangChart()
 }

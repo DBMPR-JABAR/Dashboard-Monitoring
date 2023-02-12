@@ -19,7 +19,14 @@ export default function SapuLobangSubSection() {
 
   const showTotalSisaLubang = () => {
     if (rekapSapuLobangState.isLoading) {
-      return <Skeleton className="mt-3" height="60%" />
+      return (
+        <Skeleton
+          className="mt-3"
+          height="60%"
+          baseColor="#EF5350"
+          highlightColor="#FFCDD2"
+        />
+      )
     } else {
       return (
         <div className="text-2xl text-red-800 font-bold font-lato mt-3">
@@ -34,7 +41,14 @@ export default function SapuLobangSubSection() {
 
   const showTotalLubangDirencanakan = () => {
     if (rekapSapuLobangState.isLoading) {
-      return <Skeleton className="mt-3" height="60%" />
+      return (
+        <Skeleton
+          className="mt-3"
+          height="60%"
+          baseColor="#42A5F5"
+          highlightColor="#BBDEFB"
+        />
+      )
     } else {
       return (
         <div className="text-2xl text-blue-800 font-bold font-lato mt-3">
@@ -49,7 +63,14 @@ export default function SapuLobangSubSection() {
 
   const showTotalLubangDitangani = () => {
     if (rekapSapuLobangState.isLoading) {
-      return <Skeleton className="mt-3" height="60%" />
+      return (
+        <Skeleton
+          className="mt-3"
+          height="60%"
+          baseColor="#4DC27E"
+          highlightColor="#C3E9D0"
+        />
+      )
     } else {
       return (
         <div className="text-2xl text-green-800 font-bold font-lato mt-3">
