@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import isEmptyOrSpaces from '../../../../helper/stringUtils'
 import LoadingSpinnerWithText from '../../../loading/spinner/LoadingSpinnerWithText'
 
-function Chart({ data: rekapSapuLobang }) {
+function RekapBarChart({ data: rekapSapuLobang }) {
   const datasetSisaLubang = {
     label: 'Sisa Lubang',
     data: rekapSapuLobang.sisa.map((elem) => elem.jumlah),
@@ -66,7 +66,7 @@ function Chart({ data: rekapSapuLobang }) {
   }
 
   return (
-    <div className="flex justify-center min-w-[800px] aspect-[2/1] p-8">
+    <div className="flex aspect-[2/1] min-w-[800px] justify-center p-8">
       <Bar
         options={chartOptions}
         data={{
@@ -94,17 +94,13 @@ export default function SapuLobangChart() {
     (state) => state.dashboard.rekap.sapuLobang
   )
 
-  const showRekapSapuLobangChart = () => {
-    if (rekapSapuLobangState.isLoading) {
-      return <LoadingSpinnerWithText />
-    }
-
-    if (!isEmptyOrSpaces(rekapSapuLobangState.error)) {
-      return <div>{rekapSapuLobangState.error}</div>
-    } else {
-      return <Chart data={rekapSapuLobangState.data} />
-    }
+  if (rekapSapuLobangState.isLoading) {
+    return <LoadingSpinnerWithText />
   }
 
-  return showRekapSapuLobangChart()
+  if (!isEmptyOrSpaces(rekapSapuLobangState.error)) {
+    return <div>{rekapSapuLobangState.error}</div>
+  } else {
+    return <RekapBarChart data={rekapSapuLobangState.data} />
+  }
 }

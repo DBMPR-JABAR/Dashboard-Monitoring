@@ -1,27 +1,25 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useCallback, useEffect, useState } from 'react'
+import Image from 'next/image'
 import Container from '../../container/Container'
 import fetchRekapTalikuat from '../../../state/redux/dashboard/rekap/talikuat/rekapTalikuatActions'
-import LoadingSpinnerWithText from '../../loading/spinner/LoadingSpinnerWithText'
 import TalikuatChart from './TalikuatChart'
 
+import chevronLeftFillBlackSvg from '../../../assets/icon/chevron_left_fill_black.svg'
+
 export default function TalikuatSection() {
-  const rekapTalikuat = useSelector((state) => state.dashboard.rekap.talikuat)
   const dispatch = useDispatch()
+
+  const [paketPekerjaan, setPaketPekerjaan] = useState(null)
 
   useEffect(() => {
     dispatch(fetchRekapTalikuat())
   }, [dispatch])
 
-  const showPaket = () => {
-    if (rekapTalikuat.isLoading) {
-      return <LoadingSpinnerWithText />
-    } else {
-      return rekapTalikuat.data
-        .filter((elem) => !elem.nm_paket.toLowerCase().includes('test'))
-        .map((paket) => <div key={paket.id}>{paket.nm_paket}</div>)
-    }
-  }
+  const handlePaketPekerjaanOnClick = useCallback(
+    (paket) => setPaketPekerjaan(paket),
+    []
+  )
 
   return (
     <Container>
@@ -33,11 +31,24 @@ export default function TalikuatSection() {
           Sistem Kendali Kinerja Mutu Kegiatan Infrastruktur
         </span>
         <div className="w-full bg-white mt-8 rounded-lg border border-gray-300">
-          <span className="inline-block my-6 mx-8 font-bold font-lora text-xl">
-            Chart Talikuat
-          </span>
+          <div className="flex my-6 mx-8">
+            <Image
+              src={chevronLeftFillBlackSvg}
+              alt="Icon Back"
+              className={`${
+                paketPekerjaan ? 'inline-block' : 'hidden'
+              } h-5 mr-6 mt-1 hover:cursor-pointer`}
+              onClick={() => setPaketPekerjaan(null)}
+            />
+            <span className="inline-block font-bold font-lora text-xl">
+              {paketPekerjaan ? paketPekerjaan.nm_paket : 'Chart Talikuat'}
+            </span>
+          </div>
           <div className="border-t border-gray-300 overflow-x-auto overflow-y-auto max-h-[600px]">
-            <TalikuatChart />
+            <TalikuatChart
+              paketPekerjaan={paketPekerjaan}
+              handlePaketPekerjaanOnClick={handlePaketPekerjaanOnClick}
+            />
           </div>
         </div>
       </div>
