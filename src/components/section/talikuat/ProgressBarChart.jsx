@@ -143,7 +143,7 @@ export default function ProgressBarChart({
             return 0
           }
         }),
-        backgroundColor: '#FFC800',
+        backgroundColor: '#FFB900',
       },
       {
         label: 'Deviasi Pekerjaan',

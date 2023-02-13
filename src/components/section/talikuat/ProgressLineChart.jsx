@@ -52,6 +52,7 @@ export default function ProgressLineChart({ paketPekerjaan }) {
       parseFloat(lap.rencana)
     ),
     borderColor: '#1E88E5',
+    backgroundColor: '#90CAF9',
   }
 
   const realisasiDataset = {
@@ -59,7 +60,8 @@ export default function ProgressLineChart({ paketPekerjaan }) {
     data: paketPekerjaan.laporan_konsultan.map((lap) =>
       parseFloat(lap.realisasi)
     ),
-    borderColor: '#FFC800',
+    borderColor: '#FFC900',
+    backgroundColor: '#FFE483',
   }
 
   const data = {
