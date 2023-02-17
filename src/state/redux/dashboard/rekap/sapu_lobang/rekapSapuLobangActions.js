@@ -3,7 +3,7 @@ import {
   FETCH_REKAP_SAPU_LOBANG_LOADING,
   FETCH_REKAP_SAPU_LOBANG_SUCCESS,
 } from './rekapSapuLobangTypes'
-import axiosClient from '../../../../../services/axiosClient'
+import { axiosTemanjabarClient } from '../../../../../services/axiosClient'
 
 const fetchRekapSapuLobangLoading = () => {
   return {
@@ -29,7 +29,9 @@ const fetchRekapSapuLobang = () => {
   return async (dispatch) => {
     dispatch(fetchRekapSapuLobangLoading())
     try {
-      const response = await axiosClient.get('/sapu-lubang/rekap-dashboard')
+      const response = await axiosTemanjabarClient.get(
+        '/sapu-lubang/rekap-dashboard'
+      )
       if (response.data.success) {
         dispatch(fetchRekapSapuLobangSuccess(response.data.data))
       } else {
@@ -42,7 +44,7 @@ const fetchRekapSapuLobang = () => {
         )
       }
     } catch (e) {
-      console.error(e)
+      console.log(e)
       dispatch(fetchRekapSapuLobangFailed(e.message))
     }
   }

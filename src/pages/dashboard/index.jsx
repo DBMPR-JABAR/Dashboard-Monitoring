@@ -35,10 +35,10 @@ export default function DashboardPage() {
         <main>
           <Container>
             <div className="my-16">
-              <span className="block text-center font-intro font-bold text-2xl">
+              <span className="block text-center font-intro text-2xl font-bold">
                 Dashboard Monitoring Teman Jabar
               </span>
-              <span className="block font-intro text-center mt-3">
+              <span className="mt-3 block text-center font-intro">
                 Dinas Bina Marga dan Penataan Ruang Provinsi Jawa Barat
               </span>
             </div>

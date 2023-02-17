@@ -1,5 +1,8 @@
 import { useMemo } from 'react'
+
 import { Bar } from 'react-chartjs-2'
+import ChartDataLabels from 'chartjs-plugin-datalabels'
+import * as TalikuatUtils from '../../../helper/talikuat_utils/talikuat_utils'
 
 const findLabel = (labels, evt) => {
   let found = false
@@ -82,6 +85,7 @@ const chartOptions = {
     },
     x: {
       max: 100,
+      min: -100,
       ticks: {
         stepSize: 25,
         maxTicksLimit: 9,
@@ -107,6 +111,17 @@ const chartOptions = {
         padding: 32,
       },
     },
+    datalabels: {
+      anchor: 'center',
+      textStrokeWidth: 2,
+      textStrokeColor: '#ffffff',
+      formatter: (value, context) => {
+        if (!Number.isInteger(value)) {
+          return `${value.toFixed(2)}%`
+        }
+        return `${value}%`
+      },
+    },
   },
 }
 
@@ -115,63 +130,55 @@ export default function ProgressBarChart({
   handlePaketPekerjaanOnClick,
 }) {
   const data = {
-    labels: talikuatData.map((paket) => `PW ${paket.id_uptd} - ID ${paket.id}`),
+    labels: talikuatData.map((paket) => paket.data_umum.id),
     datasets: [
       {
         label: 'Rencana Pekerjaan',
         data: talikuatData.map((paket) => {
-          if (paket.laporan_konsultan.length > 1) {
-            return parseFloat(
-              paket.laporan_konsultan[paket.laporan_konsultan.length - 1]
-                .rencana
-            )
-          } else {
-            return 0
-          }
+          return TalikuatUtils.getProgress(paket).rencana
         }),
         backgroundColor: '#1E88E5',
+        datalabels: {
+          color: '#0D47A1',
+        },
       },
       {
         label: 'Realisasi Pekerjaan',
         data: talikuatData.map((paket) => {
-          if (paket.laporan_konsultan.length > 1) {
-            return parseFloat(
-              paket.laporan_konsultan[paket.laporan_konsultan.length - 1]
-                .realisasi
-            )
-          } else {
-            return 0
-          }
+          return TalikuatUtils.getProgress(paket).realisasi
         }),
         backgroundColor: '#FFB900',
+        datalabels: {
+          color: '#FF7500',
+        },
       },
       {
         label: 'Deviasi Pekerjaan',
         data: talikuatData.map((paket) => {
-          if (paket.laporan_konsultan.length > 1) {
-            return parseFloat(
-              paket.laporan_konsultan[paket.laporan_konsultan.length - 1]
-                .deviasi
-            )
-          } else {
-            return 0
-          }
+          return TalikuatUtils.getProgress(paket).deviasi
         }),
         backgroundColor: talikuatData.map((paket) => {
-          let deviasi = 0
-          if (paket.laporan_konsultan.length > 1) {
-            deviasi = parseFloat(
-              paket.laporan_konsultan[paket.laporan_konsultan.length - 1]
-                .deviasi
-            )
-          }
+          const progress = TalikuatUtils.getProgress(paket)
 
-          if (deviasi > 0) {
+          if (progress.deviasi > 0) {
             return '#16A75C'
           } else {
             return '#E53935'
           }
         }),
+        datalabels: {
+          color: (context) => {
+            const index = context.dataIndex
+            const value = context.dataset.data[index]
+            if (value < 0) {
+              return '#B71B1C'
+            } else if (value > 0) {
+              return '#006430'
+            } else {
+              return '#000000'
+            }
+          },
+        },
       },
     ],
   }
@@ -186,7 +193,7 @@ export default function ProgressBarChart({
 
   return (
     <div
-      className="relative flex min-w-[500px] justify-center p-8"
+      className="relative flex min-w-[800px] justify-center p-8"
       style={{
         height: `${heightContainer}px`,
       }}
@@ -198,6 +205,7 @@ export default function ProgressBarChart({
           ticksOnClickPlugin((labelInfo) => {
             handlePaketPekerjaanOnClick(talikuatData[labelInfo.index])
           }),
+          ChartDataLabels,
         ]}
       />
     </div>

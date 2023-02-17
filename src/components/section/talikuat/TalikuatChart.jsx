@@ -11,7 +11,11 @@ export default function TalikuatChart({
   const talikuatState = useSelector((state) => state.dashboard.rekap.talikuat)
 
   if (talikuatState.isLoading) {
-    return <LoadingSpinnerWithText />
+    return (
+      <div className="flex h-full min-h-[inherit] w-full items-center justify-center">
+        <LoadingSpinnerWithText />
+      </div>
+    )
   }
 
   if (!isEmptyOrSpaces(talikuatState.error)) {

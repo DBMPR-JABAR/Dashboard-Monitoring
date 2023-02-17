@@ -1,0 +1,164 @@
+{
+  "data_umum": {
+    "id": "PW-1-097000-2",
+    "pemda": "PEMERINTAH PROVINSI JAWA BARAT",
+    "opd": "DINAS BINA MARGA DAN PENATAAN RUANG",
+    "nm_paket": "TEs data",
+    "no_kontrak": "602/235/KTR/PPK.Rekons/PJ2WPVI/2021",
+    "tgl_kontrak": "2023-02-01",
+    "no_spmk": "602/235/KTR/PPK.REKONS/PJ2WPVI/2021",
+    "tgl_spmk": "2023-02-01",
+    "kategori_paket": "Rehabilitasi Jalan",
+    "uptd_id": 1,
+    "ppk_kegiatan": "Dummy",
+    "created_at": "2023-02-12T17:51:37.000000Z",
+    "updated_at": "2023-02-12T17:51:37.000000Z",
+    "uptd": {
+      "id": 1,
+      "nama_uptd": "UPTD 1"
+    },
+    "detail": {
+      "data_umum_id": "PW-1-097000-2",
+      "tgl_adendum": null,
+      "nilai_kontrak": "Rp. 1.623.877.567,00",
+      "panjang_km": "0.63",
+      "lama_waktu": 30,
+      "kontraktor_id": 37,
+      "konsultan_id": 5,
+      "ppk_id": 531,
+      "is_active": 1,
+      "keterangan": "Kontrak Awal",
+      "created_at": "2023-02-12T17:51:37.000000Z",
+      "updated_at": "2023-02-12T17:51:37.000000Z",
+      "id": 2,
+      "kontraktor": {
+        "id": 37,
+        "nama": "CV. ALFIAR",
+        "alamat": "Jl. Bumi Mas Kencana II No.17 Rt.009 Rw. 012 Kel. Antapani Wetan Kec. Antapani Kota Bandung",
+        "nama_direktur": "YANI SUBYANI",
+        "no_telp": "08122107707",
+        "npwp": "93.945.459.1-429.000",
+        "email": "null",
+        "nama_gs": "null",
+        "no_rek": "0122820750001",
+        "bank": "PT. Bank Pembangunan Daerah Jawa Barat dan Banten",
+        "created_at": null,
+        "updated_at": null
+      },
+      "konsultan": {
+        "id": 5,
+        "name": "PT. Anugrah Ezzy Perkasa PT. Garis Putih Sejajar (KSO)",
+        "alamat": "Graha DLA, Lantai 2-Suite 06 Jalan Otto Iskandar Dinata No. 392 Kel. Nyengseret Kec. Astana Anyar Kota Bandung 40242",
+        "nama_direktur": "Asep Moh. Indra Gunawan",
+        "no_telp": "0",
+        "npwp": "0",
+        "email": "null",
+        "se": "Ir. Halim Pelu",
+        "ie": null,
+        "created_at": null,
+        "updated_at": null
+      },
+      "ppk": {
+        "id": 167,
+        "no_pegawai": "196312251992031008",
+        "nip": null,
+        "nik": null,
+        "nama": "Maman Firmansyah",
+        "tgl_lahir": null,
+        "jenis_kelamin": null,
+        "no_tlp": "081385077719",
+        "user_id": 531,
+        "bidang_id": null,
+        "is_delete": 0,
+        "created_at": "2021-03-20T05:39:23.000000Z",
+        "updated_at": null,
+        "created_by": 429,
+        "updated_by": null,
+        "tmp_lahir": null,
+        "agama": null,
+        "no_tlp_rumah": null,
+        "tgl_mulai_kerja": null,
+        "jabatan": null,
+        "perusahaan": null,
+        "sekolah": null,
+        "jejang": null,
+        "jurusan_pendidikan": null,
+        "province_id": null,
+        "city_id": null,
+        "kode_pos": null,
+        "alamat": null
+      },
+      "ruas": [
+        {
+          "data_umum_detail_id": 2,
+          "ruas_id": "097000",
+          "segment_jalan": "123",
+          "lat_awal": "123",
+          "long_awal": "123",
+          "lat_akhir": "123",
+          "long_akhir": "123",
+          "created_at": "2023-02-12T17:51:37.000000Z",
+          "updated_at": "2023-02-12T17:51:37.000000Z"
+        }
+      ]
+    }
+  },
+  "rencana": [
+    {
+      "minggu": 1,
+      "tanggal": "2023-02-01 - 2023-02-07",
+      "nilai_this_week": 1.951943523584635,
+      "detail": {
+        "3.1.(1) - Galian Biasa": 0.453830581181985,
+        "5.1.(1) - Lapis Fondasi Agregat Kelas A": 1.49811294240265
+      },
+      "nilai": 1.951943523584635
+    },
+    {
+      "minggu": 2,
+      "tanggal": "2023-02-08 - 2023-02-14",
+      "nilai_this_week": 2.40891556697022,
+      "detail": {
+        "3.1.(7) - Galian Perkerasan Beraspal dengan Cold Milling Machine": 2.40891556697022
+      },
+      "nilai": 4.360859090554855
+    },
+    {
+      "minggu": 3,
+      "tanggal": "2023-02-15 - 2023-02-21",
+      "nilai_this_week": 11.64141997781536,
+      "detail": {
+        "3.1.(7) - Galian Perkerasan Beraspal dengan Cold Milling Machine": 2.40891556697022,
+        "6.1.(2a) - Lapis Perekat - Aspal Cair/Emulsi": 1.6662637350171399,
+        "6.3.(5a) - Laston Lapis Aus (AC-WC)": 7.566240675828
+      },
+      "nilai": 16.002279068370214
+    },
+    {
+      "minggu": 4,
+      "tanggal": "2023-02-22 - 2023-02-28",
+      "nilai_this_week": 83.99772093163004,
+      "detail": {
+        "6.1.(1) - Lapis Resap Pengikat - Aspal Cair/Emulsi": 3.35024746357616,
+        "6.3.(5a) - Laston Lapis Aus (AC-WC)": 45.397444054968,
+        "6.3.(6a) - Laston Lapis Antara (AC-BC)": 35.2500294130859
+      },
+      "nilai": 100.00000000000026
+    },
+    {
+      "minggu": 5,
+      "tanggal": "2023-03-01 - 2023-03-07",
+      "nilai_this_week": 0,
+      "detail": [],
+      "nilai": 100.00000000000026
+    }
+  ],
+  "realisasi": [],
+  "tanggal": [
+    "2023-02-01 - 2023-02-07",
+    "2023-02-08 - 2023-02-14",
+    "2023-02-15 - 2023-02-21",
+    "2023-02-22 - 2023-02-28",
+    "2023-03-01 - 2023-03-07"
+  ]
+}

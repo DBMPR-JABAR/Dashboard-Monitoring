@@ -1,9 +1,9 @@
-import axios from 'axios'
 import {
   FETCH_REKAP_TALIKUAT_FAILED,
   FETCH_REKAP_TALIKUAT_LOADING,
   FETCH_REKAP_TALIKUAT_SUCCESS,
 } from './rekapTalikuatTypes'
+import { axiosTalikuatClient } from '../../../../../services/axiosClient'
 
 const fetchRekapTalikuatLoading = () => {
   return {
@@ -29,11 +29,17 @@ const fetchRekapTalikuat = () => {
   return async (dispatch) => {
     dispatch(fetchRekapTalikuatLoading())
     try {
-      const response = await axios.get(
-        'https://tk.temanjabar.net/api/get-data-pembangunan22'
+      const response = await axiosTalikuatClient.post(
+        '/get-data-pembangunan-by-uptd',
+        {
+          year: 2022,
+          uptd: 'all',
+        }
       )
+
       if (response.data.status) {
-        dispatch(fetchRekapTalikuatSuccess(response.data.data))
+        const formattedData = response.data.data
+        dispatch(fetchRekapTalikuatSuccess(formattedData))
       } else {
         dispatch(
           fetchRekapTalikuatFailed(

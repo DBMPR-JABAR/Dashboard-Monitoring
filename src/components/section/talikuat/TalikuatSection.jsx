@@ -24,27 +24,29 @@ export default function TalikuatSection() {
   return (
     <Container>
       <div className="mt-16">
-        <span className="block text-center font-intro font-bold text-2xl">
+        <span className="block text-center font-intro text-2xl font-bold">
           Talikuat
         </span>
-        <span className="block font-intro text-center mt-3">
+        <span className="mt-3 block text-center font-intro">
           Sistem Kendali Kinerja Mutu Kegiatan Infrastruktur
         </span>
-        <div className="w-full bg-white mt-8 rounded-lg border border-gray-300">
-          <div className="flex my-6 mx-8">
+        <div className="mt-8 w-full rounded-lg border border-gray-300 bg-white">
+          <div className="my-6 mx-8 flex">
             <Image
               src={chevronLeftFillBlackSvg}
               alt="Icon Back"
               className={`${
                 paketPekerjaan ? 'inline-block' : 'hidden'
-              } h-5 mr-6 mt-1 hover:cursor-pointer`}
+              } mr-6 mt-1 h-5 hover:cursor-pointer`}
               onClick={() => setPaketPekerjaan(null)}
             />
-            <span className="inline-block font-bold font-lora text-xl">
-              {paketPekerjaan ? paketPekerjaan.nm_paket : 'Chart Talikuat'}
+            <span className="inline-block font-lora text-xl font-bold">
+              {paketPekerjaan
+                ? paketPekerjaan.data_umum.nm_paket
+                : 'Chart Talikuat'}
             </span>
           </div>
-          <div className="border-t border-gray-300 overflow-x-auto overflow-y-auto max-h-[600px]">
+          <div className="max-h-[800px] min-h-[500px] overflow-x-auto overflow-y-auto border-t border-gray-300 p-8">
             <TalikuatChart
               paketPekerjaan={paketPekerjaan}
               handlePaketPekerjaanOnClick={handlePaketPekerjaanOnClick}

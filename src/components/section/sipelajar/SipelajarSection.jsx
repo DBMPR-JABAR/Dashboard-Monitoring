@@ -5,10 +5,10 @@ export default function SipelajarSection() {
   return (
     <Container>
       <div className="mt-16">
-        <span className="block text-center font-intro font-bold text-2xl">
-          Sipelajar
+        <span className="block text-center font-intro text-2xl font-bold">
+          SipelajarSection
         </span>
-        <span className="block font-intro text-center mt-3">
+        <span className="mt-3 block text-center font-intro">
           Sistem Pemeliharaan Jalan dan Jembatan Jawa Barat
         </span>
       </div>

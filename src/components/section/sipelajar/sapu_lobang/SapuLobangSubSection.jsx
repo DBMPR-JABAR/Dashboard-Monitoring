@@ -29,7 +29,7 @@ export default function SapuLobangSubSection() {
       )
     } else {
       return (
-        <div className="text-2xl text-red-800 font-bold font-lato mt-3">
+        <div className="mt-3 font-lato text-2xl font-bold text-red-800">
           {rekapSapuLobangState.data.sisa.reduce(
             (total, obj) => total + obj.jumlah,
             0
@@ -51,7 +51,7 @@ export default function SapuLobangSubSection() {
       )
     } else {
       return (
-        <div className="text-2xl text-blue-800 font-bold font-lato mt-3">
+        <div className="mt-3 font-lato text-2xl font-bold text-blue-800">
           {rekapSapuLobangState.data.perencanaan.reduce(
             (total, obj) => total + obj.jumlah,
             0
@@ -73,7 +73,7 @@ export default function SapuLobangSubSection() {
       )
     } else {
       return (
-        <div className="text-2xl text-green-800 font-bold font-lato mt-3">
+        <div className="mt-3 font-lato text-2xl font-bold text-green-800">
           {rekapSapuLobangState.data.ditangani.reduce(
             (total, obj) => total + obj.jumlah,
             0
@@ -86,31 +86,31 @@ export default function SapuLobangSubSection() {
   return (
     <>
       <div className="mt-8">
-        <span className="font-bold font-lora text-xl">Sapu Lobang</span>
+        <span className="font-lora text-xl font-bold">Sapu Lobang</span>
         <div className="mt-8 lg:grid lg:grid-cols-3 lg:gap-8">
           <CardError className="mb-8 lg:mb-0">
-            <div className="font-bold font-lato">Total Sisa Lubang</div>
+            <div className="font-lato font-bold">Total Sisa Lubang</div>
             {showTotalSisaLubang()}
           </CardError>
           <CardInfo className="mb-8 lg:mb-0">
-            <div className="font-bold font-lato">
+            <div className="font-lato font-bold">
               Total Lubang Yang Direncanakan
             </div>
             {showTotalLubangDirencanakan()}
           </CardInfo>
           <CardSuccess>
-            <div className="font-bold font-lato">
+            <div className="font-lato font-bold">
               Total Lubang Yang Ditangani
             </div>
             {showTotalLubangDitangani()}
           </CardSuccess>
         </div>
       </div>
-      <div className="w-full bg-white mt-8 rounded-lg border border-gray-300">
-        <span className="inline-block my-6 mx-8 font-bold font-lora text-xl">
+      <div className="mt-8 w-full rounded-lg border border-gray-300 bg-white">
+        <span className="my-6 mx-8 inline-block font-lora text-xl font-bold">
           Chart Sapu Lobang
         </span>
-        <div className="border-t border-gray-300 overflow-x-auto">
+        <div className="overflow-x-auto border-t border-gray-300">
           <SapuLobangChart />
         </div>
       </div>

@@ -14,7 +14,7 @@ import logoTjWithTextSvg from '../../assets/logo/logo_tj_with_text.png'
 // import loginBgSvg from '../../assets/images/login.svg'
 import loginBgPng from '../../assets/images/login.png'
 
-import axiosClient from '../../services/axiosClient'
+import { axiosTemanjabarClient } from '../../services/axiosClient'
 import LoadingSpinner from '../../components/loading/spinner/LoadingSpinner'
 import Container from '../../components/container/Container'
 import isEmptyOrSpaces from '../../helper/stringUtils'
@@ -43,7 +43,7 @@ export default function LoginPage() {
   const handleOnLogin = async () => {
     loginActionDispatcher(LoginActions.loginLoading())
     try {
-      const response = await axiosClient.post('/auth/login', {
+      const response = await axiosTemanjabarClient.post('/auth/login', {
         email: username,
         password,
       })
@@ -53,12 +53,6 @@ export default function LoginPage() {
       loginActionDispatcher(LoginActions.loginFailed(e.message))
     }
   }
-
-  useEffect(() => {
-    if (loginState.isSuccess) {
-      router.replace('/dashboard')
-    }
-  }, [loginState.isSuccess, router])
 
   useEffect(() => {
     if (authState.user) {
