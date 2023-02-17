@@ -1,3 +1,5 @@
+import ReklameChart from './ReklameChart'
+
 export default function ReklameSubSection() {
   return (
     <>
@@ -8,7 +10,9 @@ export default function ReklameSubSection() {
         <span className="my-6 mx-8 inline-block font-lora text-xl font-bold">
           Chart Pemasangan Reklame
         </span>
-        <div className="overflow-x-auto border-t border-gray-300" />
+        <div className="overflow-x-auto border-t border-gray-300">
+          <ReklameChart />
+        </div>
       </div>
     </>
   )
