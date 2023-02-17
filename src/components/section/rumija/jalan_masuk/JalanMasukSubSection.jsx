@@ -1,3 +1,5 @@
+import JalanMasukChart from './JalanMasukChart'
+
 export default function JalanMasukSubSection() {
   return (
     <>
@@ -8,7 +10,9 @@ export default function JalanMasukSubSection() {
         <span className="my-6 mx-8 inline-block font-lora text-xl font-bold">
           Chart Jalan Masuk
         </span>
-        <div className="overflow-x-auto border-t border-gray-300" />
+        <div className="overflow-x-auto border-t border-gray-300">
+          <JalanMasukChart />
+        </div>
       </div>
     </>
   )
