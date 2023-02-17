@@ -13,7 +13,7 @@ const chartOptions = {
     y: {
       beginAtZero: true,
       ticks: {
-        stepSize: 500,
+        stepSize: 25,
         maxTicksLimit: 6,
       },
       border: {
@@ -54,31 +54,22 @@ const chartOptions = {
   },
 }
 
-function RekapBarChart({ data: rekapSapuLobang }) {
-  const datasetSisaLubang = {
-    label: 'Sisa Lubang',
-    data: rekapSapuLobang.sisa.map((elem) => elem.jumlah),
-    backgroundColor: '#E53935',
-    datalabels: {
-      color: '#B71B1C',
-    },
-  }
-
-  const datasetLubangDirencanakan = {
-    label: 'Lubang Yang Direncanakan',
-    data: rekapSapuLobang.perencanaan.map((elem) => elem.jumlah),
-    backgroundColor: '#1E88E5',
-    datalabels: {
-      color: '#0D47A1',
-    },
-  }
-
-  const datasetLubangSelesai = {
-    label: 'Lubang Yang Ditangani',
-    data: rekapSapuLobang.ditangani.map((elem) => elem.jumlah),
+function RekapBarChart({ data: rekapRumija }) {
+  const datasetPemanfaatan = {
+    label: 'Pemanfaatan',
+    data: rekapRumija['Pemasangan Utilitas'].map((elem) => elem.pemanfaatan),
     backgroundColor: '#16A75C',
     datalabels: {
       color: '#006430',
+    },
+  }
+
+  const datasetPelanggaran = {
+    label: 'Pelanggaran',
+    data: rekapRumija['Pemasangan Utilitas'].map((elem) => elem.pelanggaran),
+    backgroundColor: '#E53935',
+    datalabels: {
+      color: '#B71B1C',
     },
   }
 
@@ -95,11 +86,7 @@ function RekapBarChart({ data: rekapSapuLobang }) {
             'UPTD V',
             'UPTD VI',
           ],
-          datasets: [
-            datasetSisaLubang,
-            datasetLubangDirencanakan,
-            datasetLubangSelesai,
-          ],
+          datasets: [datasetPemanfaatan, datasetPelanggaran],
         }}
         plugins={[ChartDataLabels]}
       />
@@ -107,18 +94,16 @@ function RekapBarChart({ data: rekapSapuLobang }) {
   )
 }
 
-export default function SapuLobangChart() {
-  const rekapSapuLobangState = useSelector(
-    (state) => state.dashboard.rekap.sapuLobang
-  )
+export default function UtilitasChart() {
+  const rekapRumijaState = useSelector((state) => state.dashboard.rekap.rumija)
 
-  if (rekapSapuLobangState.isLoading) {
+  if (rekapRumijaState.isLoading) {
     return <LoadingSpinnerWithText />
   }
 
-  if (!isEmptyOrSpaces(rekapSapuLobangState.error)) {
-    return <div>{rekapSapuLobangState.error}</div>
+  if (!isEmptyOrSpaces(rekapRumijaState.error)) {
+    return <div>{rekapRumijaState.error}</div>
   } else {
-    return <RekapBarChart data={rekapSapuLobangState.data} />
+    return <RekapBarChart data={rekapRumijaState.data} />
   }
 }
