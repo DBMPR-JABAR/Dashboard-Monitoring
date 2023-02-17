@@ -10,6 +10,7 @@ import TalikuatSection from '../../components/section/talikuat/TalikuatSection'
 import SipelajarSection from '../../components/section/sipelajar/SipelajarSection'
 import LoadingSpinner from '../../components/loading/spinner/LoadingSpinner'
 import Container from '../../components/container/Container'
+import RumijaSection from '../../components/section/rumija/RumijaSection'
 
 export default function DashboardPage() {
   const authState = useSelector((state) => state.auth)
@@ -46,6 +47,7 @@ export default function DashboardPage() {
           <OverviewSection />
           <TalikuatSection />
           <SipelajarSection />
+          <RumijaSection />
         </main>
         <Footer />
       </>

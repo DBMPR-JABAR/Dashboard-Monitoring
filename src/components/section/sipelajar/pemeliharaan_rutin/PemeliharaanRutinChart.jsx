@@ -13,7 +13,7 @@ const chartOptions = {
     y: {
       beginAtZero: true,
       ticks: {
-        stepSize: 500,
+        stepSize: 25,
         maxTicksLimit: 6,
       },
       border: {
@@ -54,26 +54,10 @@ const chartOptions = {
   },
 }
 
-function RekapBarChart({ data: rekapSapuLobang }) {
-  const datasetSisaLubang = {
-    label: 'Sisa Lubang',
-    data: rekapSapuLobang.sisa.map((elem) => elem.jumlah),
-    backgroundColor: '#E53935',
-    datalabels: {
-      color: '#B71B1C',
-    },
-  }
-  const datasetLubangDirencanakan = {
-    label: 'Lubang Yang Direncanakan',
-    data: rekapSapuLobang.perencanaan.map((elem) => elem.jumlah),
-    backgroundColor: '#1E88E5',
-    datalabels: {
-      color: '#0D47A1',
-    },
-  }
-  const datasetLubangSelesai = {
-    label: 'Lubang Yang Ditangani',
-    data: rekapSapuLobang.ditangani.map((elem) => elem.jumlah),
+function RekapBarChart({ data: rekapPemeliharaan }) {
+  const datasetPemeliharaan = {
+    label: 'Pemeliharaan',
+    data: rekapPemeliharaan.approve.map((elem) => elem.value),
     backgroundColor: '#16A75C',
     datalabels: {
       color: '#006430',
@@ -93,11 +77,7 @@ function RekapBarChart({ data: rekapSapuLobang }) {
             'UPTD V',
             'UPTD VI',
           ],
-          datasets: [
-            datasetSisaLubang,
-            datasetLubangDirencanakan,
-            datasetLubangSelesai,
-          ],
+          datasets: [datasetPemeliharaan],
         }}
         plugins={[ChartDataLabels]}
       />
@@ -105,18 +85,18 @@ function RekapBarChart({ data: rekapSapuLobang }) {
   )
 }
 
-export default function SapuLobangChart() {
-  const rekapSapuLobangState = useSelector(
-    (state) => state.dashboard.rekap.sapuLobang
+export default function PemeliharaanRutinChart() {
+  const rekapPemeliharaanState = useSelector(
+    (state) => state.dashboard.rekap.pemeliharaan
   )
 
-  if (rekapSapuLobangState.isLoading) {
+  if (rekapPemeliharaanState.isLoading) {
     return <LoadingSpinnerWithText />
   }
 
-  if (!isEmptyOrSpaces(rekapSapuLobangState.error)) {
-    return <div>{rekapSapuLobangState.error}</div>
+  if (!isEmptyOrSpaces(rekapPemeliharaanState.error)) {
+    return <div>{rekapPemeliharaanState.error}</div>
   } else {
-    return <RekapBarChart data={rekapSapuLobangState.data} />
+    return <RekapBarChart data={rekapPemeliharaanState.data} />
   }
 }
