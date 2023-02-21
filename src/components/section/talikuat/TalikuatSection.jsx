@@ -8,6 +8,21 @@ import TalikuatChart from './TalikuatChart'
 
 import chevronLeftFillBlackSvg from '../../../assets/icon/chevron_left_fill_black.svg'
 
+const yearOptions = [
+  { value: 2022, label: '2022' },
+  { value: 2023, label: '2023' },
+]
+
+const uptdOptions = [
+  { value: 'all', label: 'Semua UPTD' },
+  { value: 1, label: 'UPTD I' },
+  { value: 2, label: 'UPTD II' },
+  { value: 3, label: 'UPTD III' },
+  { value: 4, label: 'UPTD IV' },
+  { value: 5, label: 'UPTD V' },
+  { value: 6, label: 'UPTD VI' },
+]
+
 export default function TalikuatSection() {
   const dispatch = useDispatch()
 
@@ -60,14 +75,22 @@ export default function TalikuatSection() {
                 </span>
               </div>
             </div>
-            <div className="mx-8 grid grid-cols-2 gap-4 lg:col-span-4 lg:mx-0 lg:my-4 lg:mr-8">
-              <div className="col-span-1">
-                <SelectYear onChange={handleYearOnChanged} />
+            {paketPekerjaan === null && (
+              <div className="mx-8 grid grid-cols-2 gap-4 lg:col-span-4 lg:mx-0 lg:my-4 lg:mr-8">
+                <div className="col-span-1">
+                  <SelectYear
+                    value={yearOptions.find((option) => option.value === year)}
+                    onChange={handleYearOnChanged}
+                  />
+                </div>
+                <div className="col-span-1">
+                  <SelectUPTD
+                    value={uptdOptions.find((option) => option.value === uptd)}
+                    onChange={handleUptdOnChanged}
+                  />
+                </div>
               </div>
-              <div className="col-span-1">
-                <SelectUPTD onChange={handleUptdOnChanged} />
-              </div>
-            </div>
+            )}
           </div>
           <div className="max-h-[800px] min-h-[500px] overflow-x-auto overflow-y-auto border-t border-gray-300 p-8">
             <TalikuatChart
@@ -80,21 +103,6 @@ export default function TalikuatSection() {
     </Container>
   )
 }
-
-const yearOptions = [
-  { value: 2022, label: '2022' },
-  { value: 2023, label: '2023' },
-]
-
-const uptdOptions = [
-  { value: 'all', label: 'Semua UPTD' },
-  { value: 1, label: 'UPTD I' },
-  { value: 2, label: 'UPTD II' },
-  { value: 3, label: 'UPTD III' },
-  { value: 4, label: 'UPTD IV' },
-  { value: 5, label: 'UPTD V' },
-  { value: 6, label: 'UPTD VI' },
-]
 
 const selectStyles = {
   indicatorSeparator: () => ({ display: 'hidden' }),
@@ -129,12 +137,12 @@ const selectStyles = {
   }),
 }
 
-function SelectYear({ onChange }) {
+function SelectYear({ value, onChange }) {
   return (
     <div>
       <span className="mb-2 block font-intro text-sm font-bold">Tahun</span>
       <Select
-        defaultValue={yearOptions[1]}
+        defaultValue={value}
         placeholder="Pilih Tahun"
         options={yearOptions}
         styles={selectStyles}
@@ -144,11 +152,12 @@ function SelectYear({ onChange }) {
   )
 }
 
-function SelectUPTD({ onChange }) {
+function SelectUPTD({ value, onChange }) {
   return (
     <div>
       <span className="mb-2 block font-intro text-sm font-bold">UPTD</span>
       <Select
+        defaultValue={value}
         placeholder="Pilih UPTD"
         options={uptdOptions}
         styles={selectStyles}
