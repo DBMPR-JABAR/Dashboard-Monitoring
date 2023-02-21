@@ -25,15 +25,15 @@ const fetchRekapTalikuatFailed = (err) => {
   }
 }
 
-const fetchRekapTalikuat = () => {
+const fetchRekapTalikuat = (year = 2023, uptd) => {
   return async (dispatch) => {
     dispatch(fetchRekapTalikuatLoading())
     try {
       const response = await axiosTalikuatClient.post(
         '/get-data-pembangunan-by-uptd',
         {
-          year: 2022,
-          uptd: 'all',
+          year,
+          uptd: uptd === undefined || uptd === null ? 'all' : uptd,
         }
       )
 
