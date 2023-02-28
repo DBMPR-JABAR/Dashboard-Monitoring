@@ -71,7 +71,7 @@ export default function TalikuatSection() {
                 <span className="inline-block font-lora text-xl font-bold">
                   {paketPekerjaan
                     ? paketPekerjaan.data_umum.nm_paket
-                    : 'Chart Talikuat'}
+                    : 'Data Progress Paket Pekerjaan'}
                 </span>
               </div>
             </div>

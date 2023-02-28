@@ -9,7 +9,7 @@ export default function SidebarItem({ children, active, link, onClick }) {
       }`}
       onClick={onClick}
     >
-      <span className="mx-6 my-4 inline-block font-lato font-bold text-white">
+      <span className="mx-6 my-4 inline-block font-lato text-sm font-bold text-white">
         {children}
       </span>
     </Link>

@@ -6,6 +6,7 @@ import CardError from '../../../card/CardError'
 import CardInfo from '../../../card/CardInfo'
 import CardSuccess from '../../../card/CardSuccess'
 import SapuLobangChart from './SapuLobangChart'
+import CardWarning from '../../../card/CardWarning'
 
 export default function SapuLobangSubSection() {
   const rekapSapuLobangState = useSelector(
@@ -16,6 +17,35 @@ export default function SapuLobangSubSection() {
   useEffect(() => {
     dispatch(fetchRekapSapuLobang())
   }, [dispatch])
+
+  const showTotalLubang = () => {
+    if (rekapSapuLobangState.isLoading) {
+      return (
+        <Skeleton
+          className="mt-3"
+          height="60%"
+          baseColor="#FFD026"
+          highlightColor="#FFCDD2"
+        />
+      )
+    } else {
+      const sisaLubang = rekapSapuLobangState.data.sisa.reduce(
+        (total, obj) => total + obj.jumlah,
+        0
+      )
+
+      const lubangDirencanakan = rekapSapuLobangState.data.perencanaan.reduce(
+        (total, obj) => total + obj.jumlah,
+        0
+      )
+
+      return (
+        <div className="mt-3 font-lato text-2xl font-bold text-yellow-800">
+          {sisaLubang + lubangDirencanakan}
+        </div>
+      )
+    }
+  }
 
   const showTotalSisaLubang = () => {
     if (rekapSapuLobangState.isLoading) {
@@ -86,21 +116,27 @@ export default function SapuLobangSubSection() {
   return (
     <>
       <div className="mt-8">
-        <span className="font-lora text-xl font-bold">Sapu Lobang</span>
-        <div className="mt-8 lg:grid lg:grid-cols-3 lg:gap-8">
-          <CardError className="mb-8 lg:mb-0">
-            <div className="font-lato font-bold">Total Sisa Lubang</div>
+        <span className="font-lora text-xl font-bold">
+          Data Lubang Ruas Jalan Provinsi Jawa Barat
+        </span>
+        <div className="mt-8 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+          <CardWarning className="mb-8 md:mb-0">
+            <div className="font-lato font-bold">Total Lubang</div>
+            {showTotalLubang()}
+          </CardWarning>
+          <CardError className="mb-8 md:mb-0">
+            <div className="font-lato font-bold">Sisa Lubang</div>
             {showTotalSisaLubang()}
           </CardError>
-          <CardInfo className="mb-8 lg:mb-0">
+          <CardInfo className="mb-8 md:mb-0">
             <div className="font-lato font-bold">
-              Total Lubang Yang Direncanakan
+              Lubang Yang Akan Direncanakan
             </div>
             {showTotalLubangDirencanakan()}
           </CardInfo>
           <CardSuccess>
             <div className="font-lato font-bold">
-              Total Lubang Yang Ditangani
+              Lubang Yang Telah Ditangani
             </div>
             {showTotalLubangDitangani()}
           </CardSuccess>
@@ -108,7 +144,7 @@ export default function SapuLobangSubSection() {
       </div>
       <div className="mt-8 w-full rounded-lg border border-gray-300 bg-white">
         <span className="my-6 mx-8 inline-block font-lora text-xl font-bold">
-          Chart Sapu Lobang
+          Data Lubang
         </span>
         <div className="overflow-x-auto border-t border-gray-300">
           <SapuLobangChart />

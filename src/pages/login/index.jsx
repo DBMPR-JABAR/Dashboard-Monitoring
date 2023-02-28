@@ -47,8 +47,25 @@ export default function LoginPage() {
         email: username,
         password,
       })
-      dispatch(AuthActions.setUser(response.data.data))
-      loginActionDispatcher(LoginActions.loginSucces())
+      if (response.data.data) {
+        if (
+          response.data.data.user.role.toLowerCase().includes('kepala') ||
+          response.data.data.user.role.toLowerCase().includes('administrator')
+        ) {
+          dispatch(AuthActions.setUser(response.data.data))
+          loginActionDispatcher(LoginActions.loginSucces())
+        } else {
+          loginActionDispatcher(
+            LoginActions.loginFailed('Role akun tidak disupport saat ini')
+          )
+        }
+      } else {
+        loginActionDispatcher(
+          LoginActions.loginFailed(
+            'Tidak dapat masuk menggunakan username dan password yang dimasukkan'
+          )
+        )
+      }
     } catch (e) {
       loginActionDispatcher(LoginActions.loginFailed(e.message))
     }
