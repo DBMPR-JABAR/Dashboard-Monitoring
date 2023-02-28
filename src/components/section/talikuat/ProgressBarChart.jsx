@@ -193,7 +193,7 @@ export default function ProgressBarChart({
 
   return (
     <div
-      className="relative flex min-w-[800px] justify-center p-8"
+      className="relative flex min-w-[800px] justify-center"
       style={{
         height: `${heightContainer}px`,
       }}

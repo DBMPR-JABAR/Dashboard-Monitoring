@@ -101,7 +101,7 @@ export default function ProgressLineChart({ paketPekerjaan }) {
   }
 
   return (
-    <div className="relative flex aspect-[2/1] min-w-[800px] justify-center p-8">
+    <div className="relative flex aspect-[2/1] min-w-[800px] justify-center">
       <Line data={data} options={chartOptions} plugins={[ChartDataLabels]} />
     </div>
   )

@@ -1,5 +1,5 @@
-import { useState, useEffect, useMemo } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useEffect, useMemo, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -10,6 +10,7 @@ import Container from '../container/Container'
 
 import Logo from '../logo/Logo'
 import loginFillWhite from '../../assets/icon/login_fill_white.svg'
+import NavSidebar from './sidebar/NavSidebar'
 
 export default function Nav() {
   const authState = useSelector((state) => state.auth)
@@ -43,7 +44,7 @@ export default function Nav() {
   const showLoginComponent = () => (
     <Link
       href="/login"
-      className={`flex justify-between font-lato text-sm font-bold text-white py-2 px-4 rounded-lg transition-all ${
+      className={`flex justify-between rounded-lg py-2 px-4 font-lato text-sm font-bold text-white transition-all ${
         isOnHover ? 'bg-green-700' : 'bg-primary-green'
       }`}
       onMouseEnter={() => setIsOnHover(true)}
@@ -61,12 +62,12 @@ export default function Nav() {
       <div className="flex items-center">
         <Link
           href="/dashboard"
-          className="font-lato text-sm font-bold text-gray-700 mr-8 transition-all hover:text-primary-green"
+          className="mr-8 font-lato text-sm font-bold text-gray-700 transition-all hover:text-primary-green"
         >
           Dashboard
         </Link>
         <div
-          className={`flex justify-between font-lato text-sm font-bold text-white py-2 px-4 rounded-lg cursor-pointer transition-all ${
+          className={`flex cursor-pointer justify-between rounded-lg py-2 px-4 font-lato text-sm font-bold text-white transition-all ${
             isOnHover ? 'bg-green-700' : 'bg-primary-green'
           }`}
           onMouseEnter={() => setIsOnHover(true)}
@@ -87,21 +88,26 @@ export default function Nav() {
     )
   }
 
+  const showNav = () => (
+    <div>
+      {authState.user !== null ? showUserComponent() : showLoginComponent()}
+    </div>
+  )
+
   return (
     <nav
-      className={`sticky top-0 z-[9999] border-gray-300 transition ${
-        isOnTop ? 'bg-transparent border-b-0' : 'bg-white border-b'
+      className={`sticky top-0 z-[999] border-gray-300 transition ${
+        isOnTop ? 'border-b-0 bg-transparent' : 'border-b bg-white'
       }`}
     >
       <Container>
-        <div className="flex justify-between items-center py-3">
+        <div className="flex items-center justify-between py-4">
           <Link href="/">
             <Logo height={logoSize} />
           </Link>
-          <div>
-            {authState.user !== null
-              ? showUserComponent()
-              : showLoginComponent()}
+          {/* {showNav()} */}
+          <div className="">
+            <NavSidebar />
           </div>
         </div>
       </Container>
