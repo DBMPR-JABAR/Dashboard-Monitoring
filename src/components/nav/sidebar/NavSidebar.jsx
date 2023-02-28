@@ -112,13 +112,13 @@ export default function NavSidebar() {
               >
                 <div className="mt-1 flex items-center justify-between py-4 px-6">
                   <Image
-                    className="w-28 md:w-36"
+                    className="w-32 md:w-36"
                     src={logoDashboardAltWithTextSvg}
                     alt="Logo Temanjabar"
                   />
                   <Image
                     src={iconCrossFillWhiteSvg}
-                    className="mt-1 w-3"
+                    className="mt-2 w-3"
                     alt="Tombol tutup sidebar"
                     onClick={handleOnClick}
                   />
@@ -129,7 +129,7 @@ export default function NavSidebar() {
                 <Image
                   src={menuDotGridAccentGreenSvg}
                   alt="Tombol tutup sidebar"
-                  className="absolute -bottom-10 right-0 -z-10"
+                  className="absolute bottom-0 right-0 -z-10"
                   onClick={handleOnClick}
                 />
               </animated.div>
